@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Table 6 — PCTF On-Chain vs Off-Chain Storage</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 36px 40px 48px;
+      font-family: "Times New Roman", Times, Georgia, serif;
+      background: #ffffff;
+      color: #111;
+    }
+    .wrap {
+      max-width: 920px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 15px;
+      font-weight: 700;
+      text-align: center;
+      margin: 0 0 20px 0;
+      line-height: 1.35;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      line-height: 1.35;
+    }
+    th, td {
+      border: 1px solid #333;
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+    thead th {
+      background: #f5f5f5;
+      font-weight: 700;
+    }
+    tbody tr:nth-child(even) {
+      background: #fafafa;
+    }
+    td.num { text-align: right; font-variant-numeric: tabular-nums; }
+    caption {
+      caption-side: bottom;
+      text-align: left;
+      font-size: 10.5px;
+      color: #333;
+      margin-top: 14px;
+      line-height: 1.45;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Table 6. PCTF On-Chain vs Off-Chain Storage Comparison</h1>
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Data Field</th>
+          <th scope="col">Storage Location</th>
+          <th scope="col">Size in Bytes</th>
+          <th scope="col">Encrypted</th>
+          <th scope="col">Publicly Visible</th>
+          <th scope="col">Privacy Risk</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>subjectHash</td>
+          <td>On-chain</td>
+          <td class="num">32</td>
+          <td>No</td>
+          <td>Yes</td>
+          <td>None (pseudonymous only)</td>
+        </tr>
+        <tr>
+          <td>offChainReference</td>
+          <td>On-chain</td>
+          <td class="num">46</td>
+          <td>No</td>
+          <td>Yes</td>
+          <td>None (reference only)</td>
+        </tr>
+        <tr>
+          <td>timestamp</td>
+          <td>On-chain</td>
+          <td class="num">32</td>
+          <td>No</td>
+          <td>Yes</td>
+          <td>None (no personal data)</td>
+        </tr>
+        <tr>
+          <td>recordType</td>
+          <td>On-chain</td>
+          <td class="num">12</td>
+          <td>No</td>
+          <td>Yes</td>
+          <td>None</td>
+        </tr>
+        <tr>
+          <td>Full contact payload</td>
+          <td>Off-chain IPFS or local</td>
+          <td class="num">2,800 (average)</td>
+          <td>Yes</td>
+          <td>No</td>
+          <td>None (encrypted)</td>
+        </tr>
+        <tr>
+          <td>Sensitive health notes</td>
+          <td>Off-chain</td>
+          <td class="num">1,200 (average)</td>
+          <td>Yes</td>
+          <td>No</td>
+          <td>None</td>
+        </tr>
+        <tr>
+          <td>Personal identifiers</td>
+          <td>Off-chain</td>
+          <td class="num">800 (average)</td>
+          <td>Yes</td>
+          <td>No</td>
+          <td>None</td>
+        </tr>
+      </tbody>
+      <caption>
+        <strong>Note:</strong> On-chain metadata total 122 B (32 + 46 + 32 + 12); off-chain encrypted categories total 4,800 B average (2,800 + 1,200 + 800).
+      </caption>
+    </table>
+  </div>
+</body>
+</html>

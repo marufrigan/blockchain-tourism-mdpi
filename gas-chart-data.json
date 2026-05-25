@@ -1,0 +1,68 @@
+{
+  "title": "PCTF Smart Contract Gas Consumption Analysis",
+  "yMax": 450000,
+  "labels": [
+    "registerParticipant",
+    "createRecord",
+    "updateRecordStatus",
+    "getRecord (static call)",
+    "createRecord (unauthorised)",
+    "batch 5× registerParticipant (sum)"
+  ],
+  "successGas": [
+    73201,
+    228130,
+    39388,
+    0,
+    0,
+    365141
+  ],
+  "revertGas": [
+    0,
+    0,
+    0,
+    0,
+    31560,
+    0
+  ],
+  "readGas": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "operations": [
+    {
+      "name": "registerParticipant",
+      "gas": 73201,
+      "category": "success"
+    },
+    {
+      "name": "createRecord",
+      "gas": 228130,
+      "category": "success"
+    },
+    {
+      "name": "updateRecordStatus",
+      "gas": 39388,
+      "category": "success"
+    },
+    {
+      "name": "getRecord (static call)",
+      "gas": 0,
+      "category": "read"
+    },
+    {
+      "name": "createRecord (unauthorised)",
+      "gas": 31560,
+      "category": "revert"
+    },
+    {
+      "name": "batch 5× registerParticipant (sum)",
+      "gas": 365141,
+      "category": "success"
+    }
+  ]
+}
