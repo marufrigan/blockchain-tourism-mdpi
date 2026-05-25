@@ -1,0 +1,35 @@
+﻿Symbol,Meaning,First Appearance
+**U**,Universe of system entities,Section 3.1
+**PK**,Set of valid public keys (Ethereum addresses),Section 3.1
+**R**,"Set of roles {rt, rh, rm, ra, rd}",Section 3.4
+**rt**,Tourist role,Section 3.4
+**rh**,Hotel role,Section 3.4
+**rm**,Hospital role,Section 3.4
+**ra**,Authority role,Section 3.4
+**rd**,Admin role,Section 3.4
+**D**,"Set of data types {do, dv, dx, dg, dc}",Section 3.4
+**do**,Individual user records data type,Section 3.4
+**dv**,Venue-specific data type,Section 3.4
+**dx**,Diagnostic records data type,Section 3.4
+**dg**,Aggregated statistics data type,Section 3.4
+**dc**,System configuration data type,Section 3.4
+**A**,"Set of actions {READ, WRITE, NULL}",Section 3.4
+**φ**,Role assignment function: PK → R,Section 3.4
+**ρ**,"Policy function: R × D × A → {0,1}",Section 3.4
+**δ**,Authorization decision function,Section 3.4
+**γ**,"Consent function: PK × D × T → {0,1}",Section 3.5
+**P**,Access control policy (ternary relation),Section 3.4
+**Son**,On-chain storage size,Section 3.5
+**Soff**,Off-chain storage size,Section 3.5
+**α**,Off-chain data proportion,Section 3.5
+**H(·)**,Cryptographic hash function (SHA-256),Section 3.2
+**EncK(·)**,Encryption function (AES-256-GCM),Section 3.2
+**λ**,Security parameter,Section 3.5
+**ε**,Privacy budget / unlinkability parameter,Section 3.5
+**T**,Discrete time domain,Section 3.5
+**O(·)**,Big-O notation for complexity,Section 3.4
+**C**,Set of smart contracts,Section 3.1
+**S**,Off-chain storage layer (IPFS),Section 3.1
+**CID**,Content identifier for IPFS,Section 3.2
+**τ**,Timestamp,Section 3.2
+**gas**,Ethereum gas unit,Section 5
