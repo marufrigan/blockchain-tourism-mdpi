@@ -1,33 +1,42 @@
 {
   "name": "pctf-tourism-prototype",
   "version": "1.0.0",
-  "description": "Privacy-preserving Contact Tracing Framework (PCTF) — local research prototype",
-  "main": "truffle-config.js",
+  "description": "Privacy-preserving Contact Tracing Framework (PCTF) for smart tourism: research prototype and evaluation",
+  "main": "backend/src/server.js",
   "scripts": {
-    "compile": "truffle compile",
-    "migrate": "truffle migrate",
-    "migrate:reset": "truffle migrate --reset",
-    "test": "truffle test",
-    "export-abi": "node scripts/export-abi.js",
-    "postmigrate": "node scripts/export-abi.js",
-    "gas-analysis": "node scripts/gas-analysis/gas-analysis.mjs",
+    "compile": "node scripts/compile.js",
+    "test": "mocha test/pctf.test.js --timeout 60000",
+    "deploy": "node scripts/deploy.js",
     "backend": "node backend/src/server.js",
-    "dev": "node backend/src/server.js"
+    "evaluate": "node scripts/experiments/run-all.js && node scripts/experiments/throughput.js 1500 30",
+    "figures": "python3 scripts/figures/fig_results.py results figures && cd scripts/figures && python3 fig1_architecture.py ../../figures/fig1_architecture && python3 fig2_workflow.py ../../figures/fig2_workflow",
+    "slither": "slither contracts/ContactRecordManager.sol && slither contracts/ParticipantRegistry.sol"
   },
-  "keywords": ["pctf", "truffle", "tourism", "rbac"],
+  "keywords": [
+    "pctf",
+    "blockchain",
+    "contact-tracing",
+    "rbac",
+    "smart-tourism",
+    "ethereum",
+    "ipfs"
+  ],
   "license": "MIT",
   "type": "commonjs",
   "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
+    "blockstore-fs": "^4.0.1",
+    "cors": "^2.8.6",
+    "dotenv": "^16.6.1",
     "ethers": "^5.7.2",
-    "express": "^4.21.0",
-    "ipfs-http-client": "^56.0.3"
-  },
-  "devDependencies": {
-    "truffle": "^5.11.5"
+    "express": "^4.22.3",
+    "multiformats": "^14.0.5"
   },
   "engines": {
     "node": ">=18"
+  },
+  "devDependencies": {
+    "ganache": "7.9.2",
+    "mocha": "^10.8.2",
+    "solc": "0.8.19"
   }
 }

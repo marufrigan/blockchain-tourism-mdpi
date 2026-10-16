@@ -1,0 +1,443 @@
+{
+  "config": {
+    "seed": 20260302,
+    "tourists": 950,
+    "hotels": 30,
+    "health": 15,
+    "tourism": 5,
+    "days": 14,
+    "T0": 1772409600,
+    "diagnosed": 15,
+    "windowDays": 10,
+    "maxStayDays": 3,
+    "ttlRecords": 50,
+    "ipfsSample": 300,
+    "releaseSample": 300,
+    "traceSample": 60,
+    "gasPriceGwei": 1
+  },
+  "generatedAt": "2026-10-16T11:39:26.846Z",
+  "node": "v22.22.0",
+  "deployGas": {
+    "ParticipantRegistry": 846841,
+    "ContactRecordManager": 1675495,
+    "FullOnChainRecordManager": 670658
+  },
+  "E1": {
+    "registrations": 1000,
+    "success": 1000,
+    "gas": {
+      "n": 1000,
+      "mean": 53577.14,
+      "sd": 4465.67,
+      "min": 52542,
+      "p50": 52554,
+      "p95": 52554,
+      "max": 73116
+    },
+    "latencyMs": {
+      "n": 1000,
+      "mean": 24.59,
+      "sd": 5.59,
+      "min": 15.3,
+      "p50": 23.42,
+      "p95": 34.16,
+      "max": 75.2
+    },
+    "byRole": {
+      "Tourist": {
+        "n": 950,
+        "gas": 52553.17,
+        "latency": 24.62
+      },
+      "Hotel": {
+        "n": 30,
+        "gas": 72983.2,
+        "latency": 24.72
+      },
+      "HealthAuthority": {
+        "n": 15,
+        "gas": 73104,
+        "latency": 22.5
+      },
+      "TourismAuthority": {
+        "n": 5,
+        "gas": 73116,
+        "latency": 25.18
+      }
+    },
+    "consentGas": {
+      "n": 950,
+      "mean": 50940,
+      "sd": 0,
+      "min": 50940,
+      "p50": 50940,
+      "p95": 50940,
+      "max": 50940
+    }
+  },
+  "E2": {
+    "records": 1931,
+    "success": 1931,
+    "gas": {
+      "n": 1931,
+      "mean": 222353.43,
+      "sd": 4541.52,
+      "min": 205893,
+      "p50": 223017,
+      "p95": 223017,
+      "max": 257217
+    },
+    "txLatencyMs": {
+      "n": 1931,
+      "mean": 51.66,
+      "sd": 11.98,
+      "min": 33.69,
+      "p50": 48.75,
+      "p95": 71.12,
+      "max": 156.16
+    },
+    "encryptMs": {
+      "n": 1931,
+      "mean": 0.04,
+      "sd": 0.06,
+      "min": 0.018,
+      "p50": 0.03,
+      "p95": 0.076,
+      "max": 1.899
+    },
+    "storeMs": {
+      "n": 1931,
+      "mean": 0.2,
+      "sd": 0.07,
+      "min": 0.116,
+      "p50": 0.184,
+      "p95": 0.275,
+      "max": 1.876
+    },
+    "plaintextBytes": {
+      "n": 1931,
+      "mean": 393.69,
+      "sd": 104.51,
+      "min": 227,
+      "p50": 394,
+      "p95": 563,
+      "max": 593
+    },
+    "ciphertextBytes": {
+      "n": 1931,
+      "mean": 421.69,
+      "sd": 104.51,
+      "min": 255,
+      "p50": 422,
+      "p95": 591,
+      "max": 621
+    },
+    "newOnChainStateBytes": {
+      "n": 60,
+      "mean": 255.47,
+      "sd": 11.01,
+      "min": 224,
+      "p50": 256,
+      "p95": 256,
+      "max": 320
+    },
+    "newSlots": {
+      "n": 60,
+      "mean": 7.98,
+      "sd": 0.34,
+      "min": 7,
+      "p50": 8,
+      "p95": 8,
+      "max": 10
+    },
+    "logBytes": {
+      "n": 60,
+      "mean": 128,
+      "sd": 0,
+      "min": 128,
+      "p50": 128,
+      "p95": 128,
+      "max": 128
+    }
+  },
+  "E3": {
+    "bySize": {
+      "256": {
+        "fullGas": 405550.8,
+        "hybridGas": 223002.6,
+        "fullNewSlots": 18,
+        "hybridNewSlots": 8,
+        "gasSavingPct": 45,
+        "stateSavingPct": 55.6
+      },
+      "512": {
+        "fullGas": 585458.6,
+        "hybridGas": 223000.2,
+        "fullNewSlots": 24,
+        "hybridNewSlots": 8,
+        "gasSavingPct": 61.9,
+        "stateSavingPct": 66.7
+      },
+      "1024": {
+        "fullGas": 948684.4,
+        "hybridGas": 223000.2,
+        "fullNewSlots": 40,
+        "hybridNewSlots": 8,
+        "gasSavingPct": 76.5,
+        "stateSavingPct": 80
+      },
+      "2048": {
+        "fullGas": 1675137.6,
+        "hybridGas": 223002.6,
+        "fullNewSlots": 72,
+        "hybridNewSlots": 8,
+        "gasSavingPct": 86.7,
+        "stateSavingPct": 88.9
+      },
+      "4096": {
+        "fullGas": 3128052.6,
+        "hybridGas": 223002,
+        "fullNewSlots": 136,
+        "hybridNewSlots": 8,
+        "gasSavingPct": 92.9,
+        "stateSavingPct": 94.1
+      }
+    },
+    "workload": {
+      "n": 100,
+      "fullGas": 542897.85,
+      "hybridGas": 221990.52,
+      "gasSavingPct": 59.1,
+      "ciphertextBytes": 427
+    }
+  },
+  "E5": {
+    "diagnosed": 15,
+    "windowDays": 10,
+    "groundTruthExposedPseudonyms": 424,
+    "truePositives": 424,
+    "falsePositives": 0,
+    "falseNegatives": 0,
+    "precision": 1,
+    "recall": 1,
+    "exposedTourists": 343,
+    "exposedTouristsNotified": 343,
+    "negativeTouristsChecked": 200,
+    "falseAlerts": 0,
+    "diagnosisGas": {
+      "n": 15,
+      "mean": 175070.6,
+      "sd": 4.97,
+      "min": 175061,
+      "p50": 175073,
+      "p95": 175073,
+      "max": 175073
+    },
+    "matchMs": {
+      "n": 15,
+      "mean": 1972.09,
+      "sd": 672.88,
+      "min": 1086.9,
+      "p50": 2074.3,
+      "p95": 3084.7,
+      "max": 3119.9
+    },
+    "recordsScanned": {
+      "n": 15,
+      "mean": 114.73,
+      "sd": 44.85,
+      "min": 51,
+      "p50": 123,
+      "p95": 194,
+      "max": 198
+    },
+    "notifyBatches": 15,
+    "notifyGasPerNotice": {
+      "n": 15,
+      "mean": 24493.32,
+      "sd": 2177.28,
+      "min": 19366.1,
+      "p50": 25443.7,
+      "p95": 26390.8,
+      "max": 26391.5
+    },
+    "notifyGasPerBatch": {
+      "n": 15,
+      "mean": 681852.6,
+      "sd": 204201.21,
+      "min": 407099,
+      "p50": 693071,
+      "p95": 937523,
+      "max": 1084127
+    },
+    "aggregateGas": {
+      "n": 14,
+      "mean": 54892,
+      "sd": 13.1,
+      "min": 54886,
+      "p50": 54886,
+      "p95": 54898,
+      "max": 54934
+    },
+    "aggregateReadByTourismAuthority": {
+      "cases": 15,
+      "exposures": 343
+    }
+  },
+  "E6": {
+    "cases": 128,
+    "matches": 128,
+    "allowCases": 26,
+    "denyCases": 102,
+    "revertedTxGas": {
+      "n": 55,
+      "mean": 29957.24,
+      "sd": 2868.76,
+      "min": 24816,
+      "p50": 30820,
+      "p95": 34829,
+      "max": 35036
+    }
+  },
+  "E7": {
+    "ethCallSpoofSucceeds": true,
+    "rawStorageRevealsPseudonym": true,
+    "forgedRequestDenied": true,
+    "replayDenied": true,
+    "staleDenied": true,
+    "oldSchemeDictionary": {
+      "candidates": 999,
+      "targets": 188,
+      "recovered": 188,
+      "ms": 4.66
+    },
+    "hmacSchemeDictionary": {
+      "candidates": 26600,
+      "targets": 194,
+      "recovered": 0,
+      "ms": 94.6
+    },
+    "linkability": {
+      "touristsWithMultipleStays": 639,
+      "linkableStatic": 639,
+      "linkableEpochPseudonyms": 105
+    },
+    "tamper": {
+      "modified": 20,
+      "detected": 20
+    },
+    "consentWithdrawal": {
+      "tourists": 20,
+      "objectsShredded": 40,
+      "releaseAttempts": 40,
+      "denied": 40,
+      "unaffectedChecked": 50,
+      "unaffectedReleased": 50
+    },
+    "retention": {
+      "recordsWithTtl": 50,
+      "keysPurged": 49,
+      "releaseDenied": 50
+    },
+    "auditLog": {
+      "ok": true,
+      "entries": 195
+    }
+  },
+  "E8": {
+    "healthAuthorityReleaseMs": {
+      "n": 300,
+      "mean": 30.18,
+      "sd": 6.39,
+      "min": 19.668,
+      "p50": 28.898,
+      "p95": 39.718,
+      "max": 91.041
+    },
+    "touristSelfReleaseMs": {
+      "n": 100,
+      "mean": 18.75,
+      "sd": 13.2,
+      "min": 12.714,
+      "p50": 16.245,
+      "p95": 25.553,
+      "max": 144.092
+    },
+    "signMs": {
+      "n": 300,
+      "mean": 1.11,
+      "sd": 0.33,
+      "min": 0.717,
+      "p50": 1.007,
+      "p95": 1.434,
+      "max": 5.416
+    }
+  },
+  "endToEndWriteMs": 51.9,
+  "E9": {
+    "n": 300,
+    "putMs": {
+      "n": 300,
+      "mean": 0.64,
+      "sd": 3.74,
+      "min": 0.248,
+      "p50": 0.36,
+      "p95": 0.615,
+      "max": 64.884
+    },
+    "getVerifyMs": {
+      "n": 300,
+      "mean": 0.47,
+      "sd": 0.63,
+      "min": 0.216,
+      "p50": 0.372,
+      "p95": 0.746,
+      "max": 7.46
+    },
+    "digestMatches": 300
+  },
+  "E4": {
+    "records": 1500,
+    "hotels": 30,
+    "gasLimit": 30000000,
+    "blockTime2s": {
+      "submitted": 1500,
+      "dropped": 0,
+      "maxInFlight": 100,
+      "records": 1500,
+      "success": 1500,
+      "submitSec": 68,
+      "elapsedSec": 72.9,
+      "throughputPerSec": 20.58,
+      "blocksUsed": 15,
+      "recordsPerBlock": {
+        "n": 15,
+        "mean": 100,
+        "sd": 0,
+        "min": 100,
+        "p50": 100,
+        "p95": 100,
+        "max": 100
+      },
+      "inclusionLatencyMs": {
+        "n": 1500,
+        "mean": 4542.95,
+        "sd": 258.64,
+        "min": 3986.43986,
+        "p50": 4521.337652,
+        "p95": 5035.234568,
+        "max": 5214.488406
+      },
+      "gas": {
+        "n": 1500,
+        "mean": 240123.31,
+        "sd": 441.41,
+        "min": 240069,
+        "p50": 240117,
+        "p95": 240117,
+        "max": 257205
+      }
+    }
+  }
+}

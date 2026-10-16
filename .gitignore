@@ -1,15 +1,9 @@
 node_modules/
-**/node_modules/
-build/
-**/build/
-__pycache__/
-**/__pycache__/
-*.pyc
 .env
 .env.local
 .DS_Store
-artifacts/
-cache/
-coverage/
 *.log
-Algorithm Folder/fig 5.png
+backend/data/*
+!backend/data/.gitkeep
+build/deployment.json
+__pycache__/

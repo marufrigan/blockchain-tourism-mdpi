@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.19;
+pragma solidity 0.8.19;
 
 /**
  * @title ParticipantRegistry
- * @notice Registers tourism / public-health stakeholders with RBAC roles.
- * @dev Role IDs (uint8): 0 Admin, 1 Tourist, 2 Hotel, 3 HealthAuthority, 4 TourismAuthority.
- *      Only Admin may register new participants. Deployer is bootstrap Admin.
- *      No personal identifiers are required on-chain; nameOrLabel is optional metadata (e.g. org code).
+ * @notice Registers PCTF stakeholders and binds each wallet to exactly one role.
+ * @dev Role IDs: 0 Admin, 1 Tourist, 2 Hotel, 3 HealthAuthority, 4 TourismAuthority.
+ *      Only an active Admin can register, re-assign or revoke participants.
+ *      No personal identifiers are stored; `label` is an optional organisation code.
  */
 contract ParticipantRegistry {
     uint8 public constant ROLE_ADMIN = 0;
@@ -18,80 +18,83 @@ contract ParticipantRegistry {
 
     struct Participant {
         bool registered;
+        bool active;
         uint8 role;
-        string nameOrLabel;
+        string label;
     }
 
     mapping(address => Participant) private participants;
+    uint256 public activeAdmins;
 
-    event ParticipantRegistered(
-        address indexed user,
-        uint8 indexed role,
-        string nameOrLabel
-    );
+    event ParticipantRegistered(address indexed user, uint8 indexed role, string label);
+    event RoleUpdated(address indexed user, uint8 oldRole, uint8 newRole);
+    event ParticipantRevoked(address indexed user, uint8 role);
 
     constructor() {
-        participants[msg.sender] = Participant({
-            registered: true,
-            role: ROLE_ADMIN,
-            nameOrLabel: "bootstrap-admin"
-        });
+        participants[msg.sender] = Participant(true, true, ROLE_ADMIN, "bootstrap-admin");
+        activeAdmins = 1;
         emit ParticipantRegistered(msg.sender, ROLE_ADMIN, "bootstrap-admin");
     }
 
     modifier onlyAdmin() {
-        require(
-            participants[msg.sender].registered &&
-                participants[msg.sender].role == ROLE_ADMIN,
-            "ParticipantRegistry: only admin"
-        );
+        Participant storage p = participants[msg.sender];
+        require(p.active && p.role == ROLE_ADMIN, "Registry: only admin");
         _;
     }
 
-    function _validRole(uint8 role) internal pure returns (bool) {
-        return role <= ROLE_MAX;
+    function registerParticipant(address user, uint8 role, string calldata label) external onlyAdmin {
+        require(user != address(0), "Registry: zero address");
+        require(role <= ROLE_MAX, "Registry: invalid role");
+        require(!participants[user].registered, "Registry: already registered");
+        participants[user] = Participant(true, true, role, label);
+        if (role == ROLE_ADMIN) activeAdmins += 1;
+        emit ParticipantRegistered(user, role, label);
     }
 
-    /**
-     * @notice Register a wallet with a role. Callable only by Admin.
-     */
-    function registerParticipant(
-        address user,
-        uint8 role,
-        string memory nameOrLabel
-    ) external onlyAdmin {
-        require(user != address(0), "ParticipantRegistry: zero address");
-        require(_validRole(role), "ParticipantRegistry: invalid role");
-        require(!participants[user].registered, "ParticipantRegistry: already registered");
+    /// @notice Re-assign the role of an active participant (e.g. change of affiliation).
+    function updateRole(address user, uint8 newRole) external onlyAdmin {
+        require(newRole <= ROLE_MAX, "Registry: invalid role");
+        Participant storage p = participants[user];
+        require(p.active, "Registry: not active");
+        uint8 oldRole = p.role;
+        require(oldRole != newRole, "Registry: same role");
+        if (oldRole == ROLE_ADMIN) {
+            require(activeAdmins > 1, "Registry: last admin");
+            activeAdmins -= 1;
+        }
+        if (newRole == ROLE_ADMIN) activeAdmins += 1;
+        p.role = newRole;
+        emit RoleUpdated(user, oldRole, newRole);
+    }
 
-        participants[user] = Participant({
-            registered: true,
-            role: role,
-            nameOrLabel: nameOrLabel
-        });
-
-        emit ParticipantRegistered(user, role, nameOrLabel);
+    /// @notice Revoke a participant. A revoked wallet fails every role check.
+    function revokeParticipant(address user) external onlyAdmin {
+        Participant storage p = participants[user];
+        require(p.active, "Registry: not active");
+        if (p.role == ROLE_ADMIN) {
+            require(activeAdmins > 1, "Registry: last admin");
+            activeAdmins -= 1;
+        }
+        p.active = false;
+        emit ParticipantRevoked(user, p.role);
     }
 
     function getParticipant(address user)
         external
         view
-        returns (
-            bool registered,
-            uint8 role,
-            string memory nameOrLabel
-        )
+        returns (bool registered, bool active, uint8 role, string memory label)
     {
         Participant storage p = participants[user];
-        return (p.registered, p.role, p.nameOrLabel);
+        return (p.registered, p.active, p.role, p.label);
     }
 
-    function isRegistered(address user) external view returns (bool) {
-        return participants[user].registered;
+    function isActive(address user) external view returns (bool) {
+        return participants[user].active;
     }
 
-    function getRole(address user) external view returns (uint8) {
-        require(participants[user].registered, "ParticipantRegistry: not registered");
-        return participants[user].role;
+    /// @notice Returns (active, role) in a single call for access checks.
+    function roleOf(address user) external view returns (bool active, uint8 role) {
+        Participant storage p = participants[user];
+        return (p.active, p.role);
     }
 }

@@ -6,7 +6,6 @@ function health(_req, res) {
     data: {
       service: "pctf-backend",
       rpcUrl: config.rpcUrl,
-      networkId: config.networkId,
       storageMode: config.storageMode,
     },
   });

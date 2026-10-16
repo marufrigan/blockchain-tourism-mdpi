@@ -1,0 +1,13 @@
+Multiple frameworks detected: solc, Solc-json. Using solc (highest priority). Use --compile-force-framework to override.
+'../tools/solc-0.8.19 --version' running
+'../tools/solc-0.8.19 contracts/ParticipantRegistry.sol --combined-json abi,ast,bin,bin-runtime,srcmap,srcmap-runtime,userdoc,devdoc,hashes --allow-paths .,/tmp/claude-0/-home-claude/7f4d4ab2-28fa-5c32-ba4d-48054abe3850/scratchpad/pctf2/contracts' running
+INFO:Detectors:
+Detector: solc-version
+Version constraint 0.8.19 contains known severe issues (https://solidity.readthedocs.io/en/latest/bugs.html)
+	- VerbatimInvalidDeduplication
+	- FullInlinerNonExpressionSplitArgumentEvaluationOrder
+	- MissingSideEffectsOnSelectorAccess.
+It is used by:
+	- 0.8.19 (contracts/ParticipantRegistry.sol#2)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#incorrect-versions-of-solidity
+INFO:Slither:contracts/ParticipantRegistry.sol analyzed (1 contracts with 102 detectors), 1 result(s) found
