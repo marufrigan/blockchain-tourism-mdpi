@@ -1,0 +1,35 @@
+Multiple frameworks detected: solc, Solc-json. Using solc (highest priority). Use --compile-force-framework to override.
+'solc --version' running
+'solc contracts/ContactRecordManager.sol --combined-json abi,ast,bin,bin-runtime,srcmap,srcmap-runtime,userdoc,devdoc,hashes --allow-paths .,./contracts' running
+INFO:Detectors:
+Detector: uninitialized-local
+RoleAccessControl.constructor(address).b (contracts/RoleAccessControl.sol#43) is a local variable never initialized
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#uninitialized-local-variables
+INFO:Detectors:
+Detector: unused-return
+ContactRecordManager.getSubjectRecordIds(bytes32,uint256,uint256) (contracts/ContactRecordManager.sol#195-204) ignores return value by (None,role) = registry.roleOf(msg.sender) (contracts/ContactRecordManager.sol#201)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#unused-return
+INFO:Detectors:
+Detector: timestamp
+ContactRecordManager.notifyExposures(uint256,bytes32[]) (contracts/ContactRecordManager.sol#95-106) uses timestamp for comparisons
+	Dangerous comparisons:
+	- require(bool,string)(d.dataType == D_DIAGNOSTIC && d.status == STATUS_ACTIVE,CRM: not a diagnosis) (contracts/ContactRecordManager.sol#101)
+ContactRecordManager.updateRecordStatus(uint256,uint8) (contracts/ContactRecordManager.sol#117-125) uses timestamp for comparisons
+	Dangerous comparisons:
+	- require(bool,string)(r.createdBy == msg.sender,CRM: not record owner) (contracts/ContactRecordManager.sol#122)
+ContactRecordManager.getRecord(uint256) (contracts/ContactRecordManager.sol#166-172) uses timestamp for comparisons
+	Dangerous comparisons:
+	- require(bool,string)(r.createdBy == msg.sender,CRM: not record owner) (contracts/ContactRecordManager.sol#170)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#block-timestamp
+INFO:Detectors:
+Detector: solc-version
+Version constraint 0.8.19 contains known severe issues (https://solidity.readthedocs.io/en/latest/bugs.html)
+	- VerbatimInvalidDeduplication
+	- FullInlinerNonExpressionSplitArgumentEvaluationOrder
+	- MissingSideEffectsOnSelectorAccess.
+It is used by:
+	- 0.8.19 (contracts/ContactRecordManager.sol#2)
+	- 0.8.19 (contracts/ParticipantRegistry.sol#2)
+	- 0.8.19 (contracts/RoleAccessControl.sol#2)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#incorrect-versions-of-solidity
+INFO:Slither:contracts/ContactRecordManager.sol analyzed (3 contracts with 102 detectors), 6 result(s) found

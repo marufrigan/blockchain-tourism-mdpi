@@ -1,7 +1,0 @@
-Operation,Role,Gas Used,ETH Cost at 20 Gwei,Status
-registerParticipant,Admin,73201,0.00146402,success
-createRecord,Hotel,228130,0.0045626,success
-updateRecordStatus,HealthAuthority,39388,0.00078776,success
-getRecord (static call),HealthAuthority,0,0,read (no user gas)
-createRecord (unauthorised),Tourist,31560,0.0006312,revert
-batch 5× registerParticipant (sum),Admin,365141,0.00730282,success (aggregate)

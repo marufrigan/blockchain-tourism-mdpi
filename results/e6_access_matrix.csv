@@ -1,0 +1,129 @@
+operation,actor,expected,observed,match,gasUsed
+registerParticipant (tx),Admin,allow,allow,yes,52554
+registerParticipant (tx),Tourist,deny,deny,yes,24941
+registerParticipant (tx),Hotel (owner),deny,deny,yes,24941
+registerParticipant (tx),Hotel (other),deny,deny,yes,24941
+registerParticipant (tx),HealthAuthority,deny,deny,yes,24941
+registerParticipant (tx),TourismAuthority,deny,deny,yes,24941
+registerParticipant (tx),Revoked hotel,deny,deny,yes,24816
+registerParticipant (tx),Unregistered,deny,deny,yes,24816
+createVenueRecord (tx),Admin,deny,deny,yes,32686
+createVenueRecord (tx),Tourist,deny,deny,yes,32686
+createVenueRecord (tx),Hotel (owner),allow,allow,yes,205905
+createVenueRecord (tx),Hotel (other),allow,allow,yes,205905
+createVenueRecord (tx),HealthAuthority,deny,deny,yes,32686
+createVenueRecord (tx),TourismAuthority,deny,deny,yes,32686
+createVenueRecord (tx),Revoked hotel,deny,deny,yes,29824
+createVenueRecord (tx),Unregistered,deny,deny,yes,29824
+updateRecordStatus venue (tx),Admin,deny,deny,yes,34829
+updateRecordStatus venue (tx),Tourist,deny,deny,yes,34829
+updateRecordStatus venue (tx),Hotel (owner),allow,allow,yes,37023
+updateRecordStatus venue (tx),Hotel (other),deny,deny,yes,35036
+updateRecordStatus venue (tx),HealthAuthority,deny,deny,yes,34829
+updateRecordStatus venue (tx),TourismAuthority,deny,deny,yes,34829
+updateRecordStatus venue (tx),Revoked hotel,deny,deny,yes,31967
+updateRecordStatus venue (tx),Unregistered,deny,deny,yes,31967
+recordDiagnosis (tx),Admin,deny,deny,yes,32114
+recordDiagnosis (tx),Tourist,deny,deny,yes,32114
+recordDiagnosis (tx),Hotel (owner),deny,deny,yes,32114
+recordDiagnosis (tx),Hotel (other),deny,deny,yes,32114
+recordDiagnosis (tx),HealthAuthority,allow,allow,yes,157985
+recordDiagnosis (tx),TourismAuthority,deny,deny,yes,32114
+recordDiagnosis (tx),Revoked hotel,deny,deny,yes,29252
+recordDiagnosis (tx),Unregistered,deny,deny,yes,29252
+notifyExposures (tx),Admin,deny,deny,yes,31251
+notifyExposures (tx),Tourist,deny,deny,yes,31251
+notifyExposures (tx),Hotel (owner),deny,deny,yes,31251
+notifyExposures (tx),Hotel (other),deny,deny,yes,31251
+notifyExposures (tx),HealthAuthority,allow,allow,yes,57563
+notifyExposures (tx),TourismAuthority,deny,deny,yes,31251
+notifyExposures (tx),Revoked hotel,deny,deny,yes,28389
+notifyExposures (tx),Unregistered,deny,deny,yes,28389
+publishAggregate (tx),Admin,deny,deny,yes,30820
+publishAggregate (tx),Tourist,deny,deny,yes,30820
+publishAggregate (tx),Hotel (owner),deny,deny,yes,30820
+publishAggregate (tx),Hotel (other),deny,deny,yes,30820
+publishAggregate (tx),HealthAuthority,allow,allow,yes,54910
+publishAggregate (tx),TourismAuthority,deny,deny,yes,30820
+publishAggregate (tx),Revoked hotel,deny,deny,yes,27958
+publishAggregate (tx),Unregistered,deny,deny,yes,27958
+setPolicy (tx),Admin,allow,allow,yes,34341
+setPolicy (tx),Tourist,deny,deny,yes,30925
+setPolicy (tx),Hotel (owner),deny,deny,yes,30925
+setPolicy (tx),Hotel (other),deny,deny,yes,30925
+setPolicy (tx),HealthAuthority,deny,deny,yes,30925
+setPolicy (tx),TourismAuthority,deny,deny,yes,30925
+setPolicy (tx),Revoked hotel,deny,deny,yes,28063
+setPolicy (tx),Unregistered,deny,deny,yes,28063
+setConsent (tx),Admin,deny,deny,yes,27399
+setConsent (tx),Tourist,allow,allow,yes,31040
+setConsent (tx),Hotel (owner),deny,deny,yes,27399
+setConsent (tx),Hotel (other),deny,deny,yes,27399
+setConsent (tx),HealthAuthority,deny,deny,yes,27399
+setConsent (tx),TourismAuthority,deny,deny,yes,27399
+setConsent (tx),Revoked hotel,deny,deny,yes,27382
+setConsent (tx),Unregistered,deny,deny,yes,27382
+getRecord venue (view),Admin,deny,deny,yes,
+getRecord venue (view),Tourist,deny,deny,yes,
+getRecord venue (view),Hotel (owner),allow,allow,yes,
+getRecord venue (view),Hotel (other),deny,deny,yes,
+getRecord venue (view),HealthAuthority,allow,allow,yes,
+getRecord venue (view),TourismAuthority,deny,deny,yes,
+getRecord venue (view),Revoked hotel,deny,deny,yes,
+getRecord venue (view),Unregistered,deny,deny,yes,
+getRecord diagnostic (view),Admin,deny,deny,yes,
+getRecord diagnostic (view),Tourist,deny,deny,yes,
+getRecord diagnostic (view),Hotel (owner),deny,deny,yes,
+getRecord diagnostic (view),Hotel (other),deny,deny,yes,
+getRecord diagnostic (view),HealthAuthority,allow,allow,yes,
+getRecord diagnostic (view),TourismAuthority,deny,deny,yes,
+getRecord diagnostic (view),Revoked hotel,deny,deny,yes,
+getRecord diagnostic (view),Unregistered,deny,deny,yes,
+getSubjectRecordIds (view),Admin,deny,deny,yes,
+getSubjectRecordIds (view),Tourist,deny,deny,yes,
+getSubjectRecordIds (view),Hotel (owner),deny,deny,yes,
+getSubjectRecordIds (view),Hotel (other),deny,deny,yes,
+getSubjectRecordIds (view),HealthAuthority,allow,allow,yes,
+getSubjectRecordIds (view),TourismAuthority,deny,deny,yes,
+getSubjectRecordIds (view),Revoked hotel,deny,deny,yes,
+getSubjectRecordIds (view),Unregistered,deny,deny,yes,
+getVenueRecordIds (view),Admin,deny,deny,yes,
+getVenueRecordIds (view),Tourist,deny,deny,yes,
+getVenueRecordIds (view),Hotel (owner),allow,allow,yes,
+getVenueRecordIds (view),Hotel (other),allow,allow,yes,
+getVenueRecordIds (view),HealthAuthority,allow,allow,yes,
+getVenueRecordIds (view),TourismAuthority,deny,deny,yes,
+getVenueRecordIds (view),Revoked hotel,deny,deny,yes,
+getVenueRecordIds (view),Unregistered,deny,deny,yes,
+getExposure (view),Admin,deny,deny,yes,
+getExposure (view),Tourist,allow,allow,yes,
+getExposure (view),Hotel (owner),deny,deny,yes,
+getExposure (view),Hotel (other),deny,deny,yes,
+getExposure (view),HealthAuthority,allow,allow,yes,
+getExposure (view),TourismAuthority,deny,deny,yes,
+getExposure (view),Revoked hotel,deny,deny,yes,
+getExposure (view),Unregistered,deny,deny,yes,
+getAggregate (view),Admin,deny,deny,yes,
+getAggregate (view),Tourist,deny,deny,yes,
+getAggregate (view),Hotel (owner),allow,allow,yes,
+getAggregate (view),Hotel (other),allow,allow,yes,
+getAggregate (view),HealthAuthority,allow,allow,yes,
+getAggregate (view),TourismAuthority,allow,allow,yes,
+getAggregate (view),Revoked hotel,deny,deny,yes,
+getAggregate (view),Unregistered,deny,deny,yes,
+key release venue record,Admin,deny,deny,yes,
+key release venue record,Tourist,allow,allow,yes,
+key release venue record,Hotel (owner),allow,allow,yes,
+key release venue record,Hotel (other),deny,deny,yes,
+key release venue record,HealthAuthority,allow,allow,yes,
+key release venue record,TourismAuthority,deny,deny,yes,
+key release venue record,Revoked hotel,deny,deny,yes,
+key release venue record,Unregistered,deny,deny,yes,
+key release diagnostic record,Admin,deny,deny,yes,
+key release diagnostic record,Tourist,deny,deny,yes,
+key release diagnostic record,Hotel (owner),deny,deny,yes,
+key release diagnostic record,Hotel (other),deny,deny,yes,
+key release diagnostic record,HealthAuthority,allow,allow,yes,
+key release diagnostic record,TourismAuthority,deny,deny,yes,
+key release diagnostic record,Revoked hotel,deny,deny,yes,
+key release diagnostic record,Unregistered,deny,deny,yes,
