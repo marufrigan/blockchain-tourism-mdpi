@@ -1,0 +1,19 @@
+Multiple frameworks detected: solc, Solc-json. Using solc (highest priority). Use --compile-force-framework to override.
+'solc --version' running
+'solc contracts/FullOnChainRecordManager.sol --combined-json abi,ast,bin,bin-runtime,srcmap,srcmap-runtime,userdoc,devdoc,hashes --allow-paths .,./contracts' running
+INFO:Detectors:
+Detector: uninitialized-local
+RoleAccessControl.constructor(address).b (contracts/RoleAccessControl.sol#43) is a local variable never initialized
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#uninitialized-local-variables
+INFO:Detectors:
+Detector: solc-version
+Version constraint 0.8.19 contains known severe issues (https://solidity.readthedocs.io/en/latest/bugs.html)
+	- VerbatimInvalidDeduplication
+	- FullInlinerNonExpressionSplitArgumentEvaluationOrder
+	- MissingSideEffectsOnSelectorAccess.
+It is used by:
+	- 0.8.19 (contracts/FullOnChainRecordManager.sol#2)
+	- 0.8.19 (contracts/ParticipantRegistry.sol#2)
+	- 0.8.19 (contracts/RoleAccessControl.sol#2)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#incorrect-versions-of-solidity
+INFO:Slither:contracts/FullOnChainRecordManager.sol analyzed (3 contracts with 102 detectors), 2 result(s) found
