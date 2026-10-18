@@ -43,16 +43,30 @@ fig, axs = plt.subplots(1, 2, figsize=(16.0 / 2.54, 5.6 / 2.54))
 x = np.arange(len(sizes))
 w = 0.38
 ax = axs[0]
-b1 = ax.bar(x - w / 2, full, w, color="white", edgecolor="black", hatch="////", lw=0.6, label="Fully on-chain baseline")
-b2 = ax.bar(x + w / 2, hyb, w, color="black", edgecolor="black", lw=0.6, label="PCTF hybrid")
-for i, s in enumerate(sizes):
-    ax.text(x[i] - w / 2, full[i] + 40, f"{full[i]:.0f}", ha="center", va="bottom", fontsize=5.2)
-    ax.text(x[i] + w / 2, hyb[i] + 40, f"{hyb[i]:.0f}", ha="center", va="bottom", fontsize=5.2)
-ax.set_xticks(x, [str(s) for s in sizes])
-ax.set_xlabel("Encrypted payload size (bytes)")
+# measured mean +/- SD per size, with the least-squares cost models of Section 6.2
+M = json.load(open(os.path.join(R, "e11_models.json")))
+fit, hfit = M["fullOnChainFitSweep"], M["hybridMeanGas"]
+sz_rows = rows("e3_baseline_sizes.csv")
+def ms_of(design):
+    m_, s_ = [], []
+    for L in sizes:
+        g = [float(r["gasUsed"]) / 1000 for r in sz_rows if r["design"] == design and int(r["payloadBytes"]) == L]
+        m_.append(np.mean(g)); s_.append(np.std(g, ddof=1))
+    return m_, s_
+fm, fsd = ms_of("full-on-chain")
+hm, hsd = ms_of("PCTF-hybrid")
+Ls = np.linspace(200, 4300, 200)
+ax.plot(Ls, (fit["intercept"] + fit["slope"] * Ls) / 1000, "-", color="black", lw=0.7,
+        label=f"model $G_{{full}}$ = {fit['intercept']/1000:.1f}k + {fit['slope']:.1f}$L$ ($R^2$={fit['r2']:.5f})")
+ax.plot(Ls, np.full_like(Ls, hfit / 1000), "--", color="black", lw=0.7, label=f"model $G_{{PCTF}}$ = {hfit/1000:.1f}k (constant)")
+ax.errorbar(sizes, fm, yerr=fsd, fmt="s", color="black", mfc="white", ms=3.5, lw=0.6, capsize=1.5, label="Fully on-chain baseline (measured)")
+ax.errorbar(sizes, hm, yerr=hsd, fmt="o", color="black", ms=3.5, lw=0.6, capsize=1.5, label="PCTF hybrid (measured)")
+ax.set_xscale("log", base=2)
+ax.set_xticks(sizes, [str(s) for s in sizes])
+ax.set_xlabel("Encrypted payload size $L$ (bytes)")
 ax.set_ylabel("Gas per record (×10$^3$)")
-ax.set_ylim(0, max(full) * 1.15)
-ax.legend(loc="upper left", fontsize=6)
+ax.set_ylim(0, max(fm) * 1.12)
+ax.legend(loc="upper left", fontsize=5.4)
 ax.set_title("(a) Gas per record creation", fontsize=7)
 ax = axs[1]
 ax.plot(sizes, fsl, "s-", color="black", mfc="white", ms=3.5, lw=0.8, label="Fully on-chain baseline")
@@ -90,8 +104,8 @@ ks = sorted(blocks)
 cum = np.cumsum([blocks[k] for k in ks])
 idx = np.arange(1, len(ks) + 1)
 ax.step(idx, cum, where="post", color="black", lw=0.9, label="measured (≤100 in flight)")
-cap = 30e6 / np.mean([float(r["gasUsed"]) for r in rr])
-ax.plot(idx, cap * idx, "--", color="black", lw=0.7, label=f"gas-limit bound ({cap:.0f}/block)")
+cap = int(30e6 // np.mean([float(r["gasUsed"]) for r in rr]))
+ax.plot(idx, cap * idx, "--", color="black", lw=0.7, label=f"gas-limit bound ({cap}/block)")
 ax.set_xlabel("Blocks since first submission")
 ax.set_ylabel("Records confirmed (cumulative)")
 ax.legend(loc="upper left", fontsize=6)

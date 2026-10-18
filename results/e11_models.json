@@ -1,0 +1,126 @@
+{
+  "predictedSlopeGasPerByte": 706.625,
+  "fullOnChainFit": {
+    "n": 200,
+    "intercept": 235295.53505,
+    "slope": 705.433214,
+    "slope_ci95": [
+      704.160846,
+      706.705583
+    ],
+    "intercept_ci95": [
+      233352.937154,
+      237238.132947
+    ],
+    "r2": 0.999834
+  },
+  "hybridFit": {
+    "n": 200,
+    "intercept": 222271.640216,
+    "slope": 0.222798,
+    "slope_ci95": [
+      -0.325279,
+      0.770875
+    ],
+    "intercept_ci95": [
+      221434.859368,
+      223108.421064
+    ],
+    "r2": 0.003235
+  },
+  "fullOnChainFitSweep": {
+    "n": 100,
+    "intercept": 222940.666667,
+    "slope": 709.196153,
+    "slope_ci95": [
+      708.710227,
+      709.682078
+    ],
+    "intercept_ci95": [
+      221913.356372,
+      223967.976961
+    ],
+    "r2": 0.999988
+  },
+  "hybridMeanGas": 222496.02,
+  "hybridSdGas": 4506.146159,
+  "breakEvenBytes": -18.144191,
+  "savingModelVsMeasured": {
+    "256": {
+      "model": 0.465,
+      "measured": 0.45
+    },
+    "512": {
+      "model": 0.627,
+      "measured": 0.619
+    },
+    "1024": {
+      "model": 0.7677,
+      "measured": 0.765
+    },
+    "2048": {
+      "model": 0.8676,
+      "measured": 0.867
+    },
+    "4096": {
+      "model": 0.9288,
+      "measured": 0.929
+    }
+  },
+  "savingMaxAbsError": 0.015008,
+  "baselineSlotsCheck": {
+    "512": {
+      "traced": 24,
+      "model": 24
+    },
+    "1024": {
+      "traced": 40,
+      "model": 40
+    },
+    "2048": {
+      "traced": 72,
+      "model": 72
+    },
+    "4096": {
+      "traced": 136,
+      "model": 136
+    }
+  },
+  "throughputBound": {
+    "gasPerRecordThroughputRun": 240123.31,
+    "recordsPerBlockThroughputRun": 124,
+    "gasPerRecordWorkload": 222353.43,
+    "recordsPerBlockWorkload": 134,
+    "lambdaMax_2s_throughputRun": 62.0,
+    "lambdaMax_2s_workload": 67.0,
+    "lambdaMax_12s_throughputRun": 10.333333,
+    "lambdaMax_12s_workload": 11.166667
+  },
+  "recallCI95": [
+    0.991338,
+    1.0
+  ],
+  "precisionCI95": [
+    0.991338,
+    1.0
+  ],
+  "falseAlertRateCI95": [
+    0.0,
+    0.018275
+  ],
+  "accessMatrixCI95": [
+    0.971592,
+    1.0
+  ],
+  "matchMsMeanCI95": [
+    1972.086667,
+    1599.460797,
+    2344.712537
+  ],
+  "anonymitySetsPerCell": {
+    "cells": 389,
+    "median": 5.0,
+    "min": 1,
+    "max": 13
+  }
+}

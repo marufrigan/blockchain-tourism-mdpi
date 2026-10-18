@@ -1,0 +1,11 @@
+{
+  "L1_injective": true,
+  "L1_fits64": true,
+  "L2_no_sensitive_read": true,
+  "L2_admin_config_only": true,
+  "policyBitsHex": "0x403dc4c04700",
+  "L3_lookback": true,
+  "L3_lookback_necessary": true,
+  "L4_clip_sound": true,
+  "L5_clip_complete": true
+}
