@@ -422,7 +422,7 @@ async function revocationRace(F) {
   const { HA, recs, krs, dataDir } = F;
   const victim = HA[0];
   const auditFile = path.join(dataDir, "audit.log");
-  const startLine = fs.readFileSync(auditFile, "utf8").trim().split("\n").length;
+  const startLine = fs.existsSync(auditFile) ? fs.readFileSync(auditFile, "utf8").trim().split("\n").filter(Boolean).length : 0;
   const pending = [];
   const t0 = Date.now();
   let revokeBlock = null;

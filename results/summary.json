@@ -656,21 +656,21 @@
     "writeGas": {
       "pctf": {
         "n": 500,
-        "mean": 223080.576,
-        "sd": 6027.437,
+        "mean": 223080.288,
+        "sd": 6027.032,
         "min": 205893,
         "p50": 223017,
         "p95": 240105,
-        "max": 257205
+        "max": 257217
       },
       "acl": {
         "n": 500,
-        "mean": 237586.576,
-        "sd": 6027.437,
+        "mean": 237586.288,
+        "sd": 6027.032,
         "min": 220399,
         "p50": 237523,
         "p95": 254611,
-        "max": 271711
+        "max": 271723
       }
     },
     "governance": {
@@ -678,7 +678,7 @@
         "pctfTx": 15,
         "pctfGas": null,
         "aclTx": 150,
-        "aclGas": 204352170
+        "aclGas": 204351930
       },
       "onboardReader": {
         "pctfTx": 1,
@@ -698,56 +698,56 @@
         "pctfTx": 1,
         "pctfGas": 37142,
         "acl500Tx": 150,
-        "acl500Gas": 60880335
+        "acl500Gas": 60880147
       }
     },
     "releaseMs": {
       "pctf": {
         "n": 300,
-        "mean": 28.481,
-        "sd": 6.397,
-        "min": 20.976,
-        "p50": 26.582,
-        "p95": 38.865,
-        "max": 70.721
+        "mean": 32.708,
+        "sd": 7.947,
+        "min": 23.506,
+        "p50": 30.69,
+        "p95": 46.389,
+        "max": 78.402
       },
       "acl": {
         "n": 300,
-        "mean": 18.419,
-        "sd": 5.959,
-        "min": 12.848,
-        "p50": 17.348,
-        "p95": 24.478,
-        "max": 103.376
+        "mean": 20.599,
+        "sd": 5.674,
+        "min": 14.118,
+        "p50": 19.274,
+        "p95": 28.121,
+        "max": 71.277
       },
       "central": {
         "n": 300,
-        "mean": 2.698,
-        "sd": 1.123,
-        "min": 1.894,
-        "p50": 2.402,
-        "p95": 3.961,
-        "max": 18.476
+        "mean": 2.995,
+        "sd": 1.588,
+        "min": 2.164,
+        "p50": 2.59,
+        "p95": 4.341,
+        "max": 26.684
       }
     },
     "writeLatencyMs": {
       "pctfInstamine": {
         "n": 200,
-        "mean": 40.816,
-        "sd": 12.145,
-        "min": 28.417,
-        "p50": 37.606,
-        "p95": 64.283,
-        "max": 97.362
+        "mean": 42.106,
+        "sd": 12.272,
+        "min": 27.436,
+        "p50": 39.176,
+        "p95": 65.729,
+        "max": 114.879
       },
       "central": {
         "n": 500,
-        "mean": 0.059,
-        "sd": 0.016,
-        "min": 0.045,
-        "p50": 0.054,
-        "p95": 0.085,
-        "max": 0.23
+        "mean": 0.065,
+        "sd": 0.02,
+        "min": 0.05,
+        "p50": 0.057,
+        "p95": 0.098,
+        "max": 0.246
       }
     },
     "centralRevocation": {
@@ -763,7 +763,7 @@
         "detected": false
       },
       "pctf": {
-        "entries": 600,
+        "entries": 300,
         "anchorGas": 68217,
         "rewrittenHeadMatchesAnchor": false,
         "countMatchesAnchor": false,
@@ -1013,10 +1013,12 @@
       "grantedWithoutNonceLog": 50
     },
     "revocationRace": {
-      "requests": 200,
-      "granted": 200,
-      "deniedInactive": 0,
-      "revokeBlock": 301,
+      "requests": 246,
+      "granted": 85,
+      "deniedInactive": 161,
+      "revokeBlock": 6,
+      "maxGrantBlock": 5,
+      "minDenyBlock": 6,
       "decisionsConsistentWithDecisionBlock": true
     }
   },
@@ -1036,7 +1038,7 @@
       "objects": 120,
       "deniedWhileLost": 20,
       "sampled": 20,
-      "restoreAllMs": 54.9,
+      "restoreAllMs": 44.2,
       "grantedAfterRestore": 20
     },
     "chainUnavailable": {
@@ -1046,14 +1048,18 @@
       "deniedChainUnavailable": 20,
       "denyLatencyMs": {
         "n": 20,
-        "mean": 2.487,
-        "sd": 0.594,
-        "min": 1.898,
-        "p50": 2.251,
-        "p95": 3.61,
-        "max": 4.025
+        "mean": 2.726,
+        "sd": 0.426,
+        "min": 2.292,
+        "p50": 2.603,
+        "p95": 3.543,
+        "max": 3.757
       },
-      "firstGrantAfterRecoveryMs": null
+      "firstGrantAfterRecoveryMs": 110.4,
+      "deniedAfterRecovery": 1,
+      "reasonsAfterRecovery": [
+        "chain unavailable"
+      ]
     },
     "krsRestart": {
       "grantBefore": "GRANT",
@@ -1063,14 +1069,255 @@
       "keysReloaded": 120,
       "auditChain": {
         "ok": true,
-        "entries": 213
+        "entries": 165
       }
     },
     "backupAfterErasure": {
       "shredded": 3,
       "ownRecords": 3,
-      "deniedAfterShred": 0,
+      "deniedAfterShred": 3,
       "releasableAfterSnapshotRestore": 3
+    }
+  },
+  "E15": {
+    "network": {
+      "validators": 4,
+      "consensus": "QBFT",
+      "blockPeriodSec": 2,
+      "gasLimit": 30000000,
+      "host": "2 vCPU, 8 GB, all validators on one host",
+      "client": "Hyperledger Besu 25.10.0"
+    },
+    "deployGas": {
+      "ParticipantRegistry": 846841,
+      "ContactRecordManager": 1675495
+    },
+    "sequentialWrites": {
+      "n": 60,
+      "success": 60,
+      "gas": {
+        "n": 60,
+        "mean": 230992.8,
+        "sd": 9159.756,
+        "min": 222993,
+        "p50": 223017,
+        "p95": 240117,
+        "max": 257217
+      },
+      "latencyMs": {
+        "n": 60,
+        "mean": 1972.098,
+        "sd": 90.255,
+        "min": 1559.9,
+        "p50": 1951.2,
+        "p95": 2092.4,
+        "max": 2140
+      },
+      "node3ExtraMs": {
+        "n": 60,
+        "mean": 12.483,
+        "sd": 8.257,
+        "min": 5,
+        "p50": 10,
+        "p95": 23,
+        "max": 61
+      }
+    },
+    "releaseConcurrency": {
+      "1": {
+        "concurrency": 1,
+        "requests": 256,
+        "granted": 256,
+        "throughputPerSec": 120.4,
+        "p50Ms": 7.566,
+        "p95Ms": 12.926,
+        "maxMs": 23.576
+      },
+      "8": {
+        "concurrency": 8,
+        "requests": 256,
+        "granted": 256,
+        "throughputPerSec": 173.3,
+        "p50Ms": 45.207,
+        "p95Ms": 67.724,
+        "maxMs": 92.596
+      },
+      "32": {
+        "concurrency": 32,
+        "requests": 256,
+        "granted": 256,
+        "throughputPerSec": 191.5,
+        "p50Ms": 141.757,
+        "p95Ms": 258.067,
+        "maxMs": 325.479
+      },
+      "128": {
+        "concurrency": 128,
+        "requests": 256,
+        "granted": 160,
+        "throughputPerSec": 203.5,
+        "p50Ms": 522.017,
+        "p95Ms": 837.414,
+        "maxMs": 938.686
+      }
+    },
+    "throughput": {
+      "submitted": 1500,
+      "included": 1500,
+      "success": 1500,
+      "elapsedSec": 120.1,
+      "throughputPerSec": 12.49,
+      "blocksUsed": 16,
+      "recordsPerBlock": {
+        "n": 16,
+        "mean": 93.75,
+        "sd": 30.647,
+        "min": 4,
+        "p50": 96,
+        "p95": 124,
+        "max": 124
+      },
+      "inclusionLatencyMs": {
+        "n": 1500,
+        "mean": 15068.526,
+        "sd": 7604.772,
+        "min": 6029.659,
+        "p50": 13484.774,
+        "p95": 27735.865,
+        "max": 36355.563
+      },
+      "gas": {
+        "n": 1500,
+        "mean": 240123.336,
+        "sd": 441.719,
+        "min": 240069,
+        "p50": 240117,
+        "p95": 240117,
+        "max": 257217
+      }
+    },
+    "faults": {
+      "blocksPerSecAll4": 0.5,
+      "blocksPerSecNode4Down": 0.3,
+      "writeLatencyMsNode4Down": {
+        "n": 10,
+        "mean": 3325.364,
+        "sd": 1905.055,
+        "min": 1973.666,
+        "p50": 1988.849,
+        "p95": 6045.465,
+        "max": 6048.518
+      },
+      "twoDown": {
+        "blocksIn30s": 0,
+        "pendingTxIncluded": false,
+        "releaseWhileHalted": "GRANT"
+      },
+      "node3Restarted": {
+        "firstNewBlockMs": 65179,
+        "pendingTxIncludedMs": 18,
+        "sinceRestartMs": 65203
+      },
+      "node4Restarted": {
+        "headAtRestart": 1287,
+        "caughtUpMs": 9181
+      },
+      "blocksPerSecRecovered": 0.5
+    }
+  },
+  "E19": {
+    "role revocation": {
+      "trials": 20,
+      "enforced": 20,
+      "enforcementMs": {
+        "n": 20,
+        "mean": 1926.585,
+        "sd": 71.204,
+        "min": 1728,
+        "p50": 1906,
+        "p95": 2008.9,
+        "max": 2036.5
+      },
+      "writerReceiptMs": {
+        "n": 4,
+        "mean": 1895.125,
+        "sd": 120.001,
+        "min": 1715.9,
+        "p50": 1939.7,
+        "p95": 1958.8,
+        "max": 1966.1
+      },
+      "grantsDuringWindow": {
+        "n": 20,
+        "mean": 49.45,
+        "sd": 4.371,
+        "min": 34,
+        "p50": 50,
+        "p95": 53,
+        "max": 53
+      }
+    },
+    "consent withdrawal": {
+      "trials": 10,
+      "enforced": 10,
+      "enforcementMs": {
+        "n": 10,
+        "mean": 1946.73,
+        "sd": 49.809,
+        "min": 1882.5,
+        "p50": 1918.8,
+        "p95": 1991.8,
+        "max": 2041.9
+      },
+      "writerReceiptMs": {
+        "n": 2,
+        "mean": 1947.35,
+        "sd": 4.879,
+        "min": 1943.9,
+        "p50": 1943.9,
+        "p95": 1943.9,
+        "max": 1950.8
+      },
+      "grantsDuringWindow": {
+        "n": 10,
+        "mean": 52.3,
+        "sd": 2.111,
+        "min": 49,
+        "p50": 52,
+        "p95": 55,
+        "max": 56
+      }
+    },
+    "policy change": {
+      "trials": 10,
+      "enforced": 10,
+      "enforcementMs": {
+        "n": 10,
+        "mean": 1932.5,
+        "sd": 52.21,
+        "min": 1832.1,
+        "p50": 1929.8,
+        "p95": 1979,
+        "max": 2004.4
+      },
+      "writerReceiptMs": {
+        "n": 4,
+        "mean": 1945.35,
+        "sd": 7.221,
+        "min": 1938,
+        "p50": 1940.3,
+        "p95": 1951.4,
+        "max": 1951.7
+      },
+      "grantsDuringWindow": {
+        "n": 10,
+        "mean": 53.6,
+        "sd": 1.838,
+        "min": 50,
+        "p50": 54,
+        "p95": 55,
+        "max": 56
+      }
     }
   }
 }

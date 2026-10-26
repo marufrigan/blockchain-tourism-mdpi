@@ -27,6 +27,8 @@ const { stats, writeCsv, mergeSummary, buildWorkload, Sender, ms, now, sleep } =
 
 const WD = process.argv[2];
 const NREC = Number(process.argv[3] || 1500);
+const ONLY = process.env.ONLY || null; // run one part: writes | revocation | concurrency | throughput | faults
+const run = (k) => !ONLY || ONLY === k;
 if (!WD) throw new Error("usage: besu-qbft.js <network workdir> [records]");
 const log = (...a) => console.log(new Date().toISOString().slice(11, 19), ...a);
 const P = [8545, 8546, 8547, 8548].map((p) => {
@@ -100,7 +102,7 @@ async function waitFor(fn, timeoutMs, step = 100) {
   const recs = [];
   const seqRows = [];
   const H = new Map(hotels.map((h) => [h.address, sendr(h)]));
-  for (let i = 0; i < 60; i++) {
+  for (let i = 0; i < (run("writes") || run("revocation") || run("concurrency") ? 60 : 0); i++) {
     const st = W.stays[i];
     const hotel = hotels[st.venueIdx];
     const owner = tourists[st.touristIdx % tourists.length];
@@ -116,7 +118,7 @@ async function waitFor(fn, timeoutMs, step = 100) {
     recs.push({ id, owner, digest: put.digest });
     seqRows.push({ index: i + 1, gasUsed: x.gas, latencyMs: x.latency.toFixed(1), node3ExtraMs: vis, status: x.ok ? "success" : "fail" });
   }
-  writeCsv("e15_sequential_writes.csv", seqRows);
+  if (run("writes")) writeCsv("e15_sequential_writes.csv", seqRows);
   out.sequentialWrites = { n: seqRows.length, success: seqRows.filter((r) => r.status === "success").length, gas: stats(seqRows.map((r) => r.gasUsed)), latencyMs: stats(seqRows.map((r) => +r.latencyMs)), node3ExtraMs: stats(seqRows.map((r) => r.node3ExtraMs)) };
   log("E15a", JSON.stringify(out.sequentialWrites));
 
@@ -143,23 +145,23 @@ async function waitFor(fn, timeoutMs, step = 100) {
     await tx.wait();
     delayRows.push({ kind, preChange: pre, enforcementMs: denied && denied.toFixed(1), writerReceiptMs: included && included.toFixed(1), grantsDuringWindow: granted });
   }
-  for (let k = 0; k < 20; k++) {
-    const w = wallet(100 + k, P[0]);
+  if (run("revocation")) for (let k = 0; k < 20; k++) {
+    const w = wallet(1000 + Date.now() % 100000 + k, P[0]);
     await sa.exec(reg, "registerParticipant", [w.address, 3, "HA-t"]);
     await measure("role revocation", w, recs[k].id, () => sa.fire(reg, "revokeParticipant", [w.address]), "not an active participant");
   }
-  for (let k = 0; k < 10; k++) {
+  if (run("revocation")) for (let k = 0; k < 10; k++) {
     const r = recs.find((x) => x.owner.address === tourists[k].address);
     if (!r) continue;
     const st = sendr(tourists[k]);
     await measure("consent withdrawal", HA[0], r.id, () => st.fire(crm, "setConsent", [false]), "subject consent withdrawn");
     await st.exec(crm, "setConsent", [true]);
   }
-  for (let k = 0; k < 10; k++) {
+  if (run("revocation")) for (let k = 0; k < 10; k++) {
     await measure("policy change", HA[1], recs[30 + k].id, () => sa.fire(crm, "setPolicy", [3, 1, 0, false]), "on-chain policy denied");
     await sa.exec(crm, "setPolicy", [3, 1, 0, true]);
   }
-  writeCsv("e19_revocation_delay.csv", delayRows);
+  if (run("revocation")) writeCsv("e19_revocation_delay.csv", delayRows);
   out.E19 = {};
   for (const kind of ["role revocation", "consent withdrawal", "policy change"]) {
     const r = delayRows.filter((x) => x.kind === kind);
@@ -170,7 +172,7 @@ async function waitFor(fn, timeoutMs, step = 100) {
   // ------------------------------------------------ E15b: key-release concurrency against node2
   out.releaseConcurrency = {};
   const crow = [];
-  for (const c of [1, 8, 32, 128]) {
+  for (const c of run("concurrency") ? [1, 8, 32, 128] : []) {
     const total = 256;
     const reqs = [];
     for (let k = 0; k < total; k++) reqs.push(await sign(HA[k % 4], "release", recs[(k * 7) % recs.length].id));
@@ -192,13 +194,13 @@ async function waitFor(fn, timeoutMs, step = 100) {
     out.releaseConcurrency[c] = crow[crow.length - 1];
     log("E15b", JSON.stringify(crow[crow.length - 1]));
   }
-  writeCsv("e15_release_concurrency.csv", crow);
+  if (run("concurrency")) writeCsv("e15_release_concurrency.csv", crow);
 
   // ------------------------------------------------ E15c: throughput, writes spread over the four validators
   const iface = crm.interface;
   const nonces = await Promise.all(hotels.map((h) => h.getTransactionCount("pending")));
   const signed = [];
-  for (let i = 0; i < NREC; i++) {
+  for (let i = 0; i < (run("throughput") ? NREC : 0); i++) {
     const hi = i % hotels.length;
     const data = iface.encodeFunctionData("createVenueRecord", [
       ethers.utils.hexlify(crypto.randomBytes(32)), ethers.utils.hexlify(crypto.randomBytes(32)), ethers.utils.hexlify(crypto.randomBytes(32)),
@@ -223,11 +225,11 @@ async function waitFor(fn, timeoutMs, step = 100) {
     }
   }
   const t0 = process.hrtime.bigint();
-  // submit in rounds of 100 (just under one block) to the four validators in turn
+  // submit in rounds of 100 (just under one block); each hotel uses its own validator (hotel index mod 4)
   for (let i = 0; i < signed.length; i += 100) {
     await Promise.all(signed.slice(i, i + 100).map(async (raw, k) => {
       const tS = process.hrtime.bigint();
-      const hash = await P[(i / 100 + k) % 4].send("eth_sendRawTransaction", [raw]);
+      const hash = await P[((i + k) % hotels.length) % 4].send("eth_sendRawTransaction", [raw]);
       sentAt.set(hash, tS);
     }));
     while (sentAt.size - rows.length > 150) {
@@ -248,7 +250,7 @@ async function waitFor(fn, timeoutMs, step = 100) {
   const elapsed = Number(process.hrtime.bigint() - t0) / 1e9;
   const per = {};
   rows.forEach((r) => (per[r.block] = (per[r.block] || 0) + 1));
-  writeCsv("e15_throughput.csv", rows.map((r) => ({ ...r, latencyMs: r.latencyMs.toFixed(1) })));
+  if (run("throughput")) writeCsv("e15_throughput.csv", rows.map((r) => ({ ...r, latencyMs: r.latencyMs.toFixed(1) })));
   out.throughput = {
     submitted: sentAt.size, included: rows.length, success: rows.filter((r) => r.status === "success").length, elapsedSec: +elapsed.toFixed(1),
     throughputPerSec: +(rows.length / elapsed).toFixed(2), blocksUsed: Object.keys(per).length, recordsPerBlock: stats(Object.values(per)),
@@ -259,6 +261,16 @@ async function waitFor(fn, timeoutMs, step = 100) {
   // ------------------------------------------------ E15d: validator faults
   for (const s of H.values()) s.nonce = null; // throughput used pre-signed transactions
   const faults = {};
+  if (!run("faults")) {
+    const prev = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "..", "results", "summary.json"), "utf8"));
+    const merged = { ...(prev.E15 || {}) };
+    if (run("throughput")) merged.throughput = out.throughput;
+    if (run("concurrency")) merged.releaseConcurrency = out.releaseConcurrency;
+    if (run("writes")) merged.sequentialWrites = out.sequentialWrites;
+    mergeSummary("E15", merged);
+    if (run("revocation")) mergeSummary("E19", out.E19);
+    process.exit(0);
+  }
   const blockRate = async (sec, i = 0) => {
     const a = await head(i);
     await sleep(sec * 1000);

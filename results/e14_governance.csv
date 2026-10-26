@@ -1,7 +1,7 @@
 operation,pctf,acl
-write one record (gas),223080.576,237586.576
-grant 15 readers on 500 records (gas),15 registrations,204352170
+write one record (gas),223080.288,237586.288
+grant 15 readers on 500 records (gas),15 registrations,204351930
 "onboard one reader, 100 records (gas)",72948,2904550
 "onboard one reader, 500 records (gas)",72948,13623478
 "revoke one reader, 500 records (gas)",30946,4058689
-"remove venue read from all authorities, 500 records (gas)",37142,60880335
+"remove venue read from all authorities, 500 records (gas)",37142,60880147

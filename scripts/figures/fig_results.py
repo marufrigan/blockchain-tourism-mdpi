@@ -109,8 +109,10 @@ for kind, style in [("role revocation", "-"), ("consent withdrawal", "--"), ("po
 ax.set_xlabel("Change submitted to first denied release (s)")
 ax.set_ylabel("Cumulative fraction of trials")
 ax.set_ylim(0, 1.02)
-ax.set_xlim(left=0)
-ax.legend(loc="lower right", fontsize=5.8)
+ax.set_xlim(1.6, 2.1)
+ax.axvline(2.0, color="black", lw=0.5, ls=(0, (1, 2)))
+ax.text(2.0, 0.03, " block period", fontsize=5.6, ha="left")
+ax.legend(loc="upper left", fontsize=5.8)
 ax.set_title("(b) Revocation-to-enforcement delay, Besu QBFT", fontsize=7)
 for a_ in axs:
     a_.spines["top"].set_visible(False)
