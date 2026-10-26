@@ -439,5 +439,638 @@
         "max": 257205
       }
     }
+  },
+  "E20": [
+    {
+      "tourists": 95,
+      "records": 229,
+      "truePairs": 134,
+      "granularitySec": 1,
+      "trueSuccessorPlausible": 1,
+      "candidatesMedian": 2,
+      "candidatesP95": 4,
+      "uniqueCandidateShare": 0.2836,
+      "nextStaySuccess": 0.5697,
+      "multiStayTourists": 73,
+      "fullItinerarySuccess": 0.4019
+    },
+    {
+      "tourists": 95,
+      "records": 229,
+      "truePairs": 134,
+      "granularitySec": 3600,
+      "trueSuccessorPlausible": 1,
+      "candidatesMedian": 3,
+      "candidatesP95": 7,
+      "uniqueCandidateShare": 0.0672,
+      "nextStaySuccess": 0.3451,
+      "multiStayTourists": 73,
+      "fullItinerarySuccess": 0.2007
+    },
+    {
+      "tourists": 95,
+      "records": 229,
+      "truePairs": 134,
+      "granularitySec": 21600,
+      "trueSuccessorPlausible": 1,
+      "candidatesMedian": 5,
+      "candidatesP95": 7,
+      "uniqueCandidateShare": 0.0299,
+      "nextStaySuccess": 0.2589,
+      "multiStayTourists": 73,
+      "fullItinerarySuccess": 0.1309
+    },
+    {
+      "tourists": 95,
+      "records": 229,
+      "truePairs": 134,
+      "granularitySec": 86400,
+      "trueSuccessorPlausible": 1,
+      "candidatesMedian": 11,
+      "candidatesP95": 16,
+      "uniqueCandidateShare": 0.0149,
+      "nextStaySuccess": 0.1343,
+      "multiStayTourists": 73,
+      "fullItinerarySuccess": 0.0569
+    },
+    {
+      "tourists": 380,
+      "records": 951,
+      "truePairs": 571,
+      "granularitySec": 1,
+      "trueSuccessorPlausible": 1,
+      "candidatesMedian": 7,
+      "candidatesP95": 12,
+      "uniqueCandidateShare": 0.0368,
+      "nextStaySuccess": 0.2179,
+      "multiStayTourists": 286,
+      "fullItinerarySuccess": 0.0887
+    },
+    {
+      "tourists": 380,
+      "records": 951,
+      "truePairs": 571,
+      "granularitySec": 3600,
+      "trueSuccessorPlausible": 1,
+      "candidatesMedian": 14,
+      "candidatesP95": 22,
+      "uniqueCandidateShare": 0.007,
+      "nextStaySuccess": 0.1051,
+      "multiStayTourists": 286,
+      "fullItinerarySuccess": 0.0326
+    },
+    {
+      "tourists": 380,
+      "records": 951,
+      "truePairs": 571,
+      "granularitySec": 21600,
+      "trueSuccessorPlausible": 1,
+      "candidatesMedian": 19,
+      "candidatesP95": 29,
+      "uniqueCandidateShare": 0.007,
+      "nextStaySuccess": 0.0777,
+      "multiStayTourists": 286,
+      "fullItinerarySuccess": 0.0216
+    },
+    {
+      "tourists": 380,
+      "records": 951,
+      "truePairs": 571,
+      "granularitySec": 86400,
+      "trueSuccessorPlausible": 1,
+      "candidatesMedian": 46,
+      "candidatesP95": 59,
+      "uniqueCandidateShare": 0.0018,
+      "nextStaySuccess": 0.0392,
+      "multiStayTourists": 286,
+      "fullItinerarySuccess": 0.0087
+    },
+    {
+      "tourists": 950,
+      "records": 2342,
+      "truePairs": 1392,
+      "granularitySec": 1,
+      "trueSuccessorPlausible": 1,
+      "candidatesMedian": 15,
+      "candidatesP95": 26,
+      "uniqueCandidateShare": 0.0057,
+      "nextStaySuccess": 0.0941,
+      "multiStayTourists": 698,
+      "fullItinerarySuccess": 0.0297
+    },
+    {
+      "tourists": 950,
+      "records": 2342,
+      "truePairs": 1392,
+      "granularitySec": 3600,
+      "trueSuccessorPlausible": 1,
+      "candidatesMedian": 31,
+      "candidatesP95": 48,
+      "uniqueCandidateShare": 0.0029,
+      "nextStaySuccess": 0.0456,
+      "multiStayTourists": 698,
+      "fullItinerarySuccess": 0.0123
+    },
+    {
+      "tourists": 950,
+      "records": 2342,
+      "truePairs": 1392,
+      "granularitySec": 21600,
+      "trueSuccessorPlausible": 1,
+      "candidatesMedian": 42,
+      "candidatesP95": 59,
+      "uniqueCandidateShare": 0.0022,
+      "nextStaySuccess": 0.0338,
+      "multiStayTourists": 698,
+      "fullItinerarySuccess": 0.0085
+    },
+    {
+      "tourists": 950,
+      "records": 2342,
+      "truePairs": 1392,
+      "granularitySec": 86400,
+      "trueSuccessorPlausible": 1,
+      "candidatesMedian": 107,
+      "candidatesP95": 140,
+      "uniqueCandidateShare": 0.0022,
+      "nextStaySuccess": 0.018,
+      "multiStayTourists": 698,
+      "fullItinerarySuccess": 0.0036
+    },
+    {
+      "tourists": 3800,
+      "records": 9452,
+      "truePairs": 5652,
+      "granularitySec": 1,
+      "trueSuccessorPlausible": 1,
+      "candidatesMedian": 58,
+      "candidatesP95": 86,
+      "uniqueCandidateShare": 0.0009,
+      "nextStaySuccess": 0.0259,
+      "multiStayTourists": 2835,
+      "fullItinerarySuccess": 0.0074
+    },
+    {
+      "tourists": 3800,
+      "records": 9452,
+      "truePairs": 5652,
+      "granularitySec": 3600,
+      "trueSuccessorPlausible": 1,
+      "candidatesMedian": 124,
+      "candidatesP95": 166,
+      "uniqueCandidateShare": 0.0004,
+      "nextStaySuccess": 0.0119,
+      "multiStayTourists": 2835,
+      "fullItinerarySuccess": 0.0032
+    },
+    {
+      "tourists": 3800,
+      "records": 9452,
+      "truePairs": 5652,
+      "granularitySec": 21600,
+      "trueSuccessorPlausible": 1,
+      "candidatesMedian": 174,
+      "candidatesP95": 223,
+      "uniqueCandidateShare": 0.0004,
+      "nextStaySuccess": 0.009,
+      "multiStayTourists": 2835,
+      "fullItinerarySuccess": 0.0022
+    },
+    {
+      "tourists": 3800,
+      "records": 9452,
+      "truePairs": 5652,
+      "granularitySec": 86400,
+      "trueSuccessorPlausible": 1,
+      "candidatesMedian": 437,
+      "candidatesP95": 508,
+      "uniqueCandidateShare": 0.0004,
+      "nextStaySuccess": 0.0048,
+      "multiStayTourists": 2835,
+      "fullItinerarySuccess": 0.0009
+    }
+  ],
+  "E14": {
+    "N": 500,
+    "hotels": 10,
+    "writeGas": {
+      "pctf": {
+        "n": 500,
+        "mean": 223080.576,
+        "sd": 6027.437,
+        "min": 205893,
+        "p50": 223017,
+        "p95": 240105,
+        "max": 257205
+      },
+      "acl": {
+        "n": 500,
+        "mean": 237586.576,
+        "sd": 6027.437,
+        "min": 220399,
+        "p50": 237523,
+        "p95": 254611,
+        "max": 271711
+      }
+    },
+    "governance": {
+      "initial15Readers": {
+        "pctfTx": 15,
+        "pctfGas": null,
+        "aclTx": 150,
+        "aclGas": 204352170
+      },
+      "onboardReader": {
+        "pctfTx": 1,
+        "pctfGas": 72948,
+        "acl100Tx": 10,
+        "acl100Gas": 2904550,
+        "acl500Tx": 10,
+        "acl500Gas": 13623478
+      },
+      "revokeReader": {
+        "pctfTx": 1,
+        "pctfGas": 30946,
+        "acl500Tx": 10,
+        "acl500Gas": 4058689
+      },
+      "policyChange": {
+        "pctfTx": 1,
+        "pctfGas": 37142,
+        "acl500Tx": 150,
+        "acl500Gas": 60880335
+      }
+    },
+    "releaseMs": {
+      "pctf": {
+        "n": 300,
+        "mean": 28.481,
+        "sd": 6.397,
+        "min": 20.976,
+        "p50": 26.582,
+        "p95": 38.865,
+        "max": 70.721
+      },
+      "acl": {
+        "n": 300,
+        "mean": 18.419,
+        "sd": 5.959,
+        "min": 12.848,
+        "p50": 17.348,
+        "p95": 24.478,
+        "max": 103.376
+      },
+      "central": {
+        "n": 300,
+        "mean": 2.698,
+        "sd": 1.123,
+        "min": 1.894,
+        "p50": 2.402,
+        "p95": 3.961,
+        "max": 18.476
+      }
+    },
+    "writeLatencyMs": {
+      "pctfInstamine": {
+        "n": 200,
+        "mean": 40.816,
+        "sd": 12.145,
+        "min": 28.417,
+        "p50": 37.606,
+        "p95": 64.283,
+        "max": 97.362
+      },
+      "central": {
+        "n": 500,
+        "mean": 0.059,
+        "sd": 0.016,
+        "min": 0.045,
+        "p50": 0.054,
+        "p95": 0.085,
+        "max": 0.23
+      }
+    },
+    "centralRevocation": {
+      "before": "GRANT",
+      "after": "not an active participant"
+    },
+    "auditability": {
+      "central": {
+        "entries": 880,
+        "verifiesBeforeRewrite": true,
+        "droppedEntry": 577,
+        "verifiesAfterRewrite": true,
+        "detected": false
+      },
+      "pctf": {
+        "entries": 600,
+        "anchorGas": 68217,
+        "rewrittenHeadMatchesAnchor": false,
+        "countMatchesAnchor": false,
+        "detected": true
+      }
+    }
+  },
+  "E16": [
+    {
+      "tourists": 950,
+      "venues": 30,
+      "records": 1931,
+      "recordsPerVenue": 64.4,
+      "thetaSec": 0,
+      "loadSec": 69.6,
+      "gasMean": 221986.92,
+      "gasMax": 257217,
+      "groundTruth": 378,
+      "truePositives": 378,
+      "falsePositives": 0,
+      "falseNegatives": 0,
+      "precision": 1,
+      "recall": 1,
+      "matchMsMean": 1774.632,
+      "matchMsP95": 3078.824,
+      "scannedMean": 111.2,
+      "kMedian": 6,
+      "kOneShare": 0.0062
+    },
+    {
+      "tourists": 950,
+      "venues": 30,
+      "records": 1931,
+      "recordsPerVenue": 64.4,
+      "thetaSec": 900,
+      "loadSec": 69.6,
+      "gasMean": 221986.92,
+      "gasMax": 257217,
+      "groundTruth": 377,
+      "truePositives": 377,
+      "falsePositives": 0,
+      "falseNegatives": 0,
+      "precision": 1,
+      "recall": 1,
+      "matchMsMean": 1863.762,
+      "matchMsP95": 3188.201,
+      "scannedMean": 111.2,
+      "kMedian": 6,
+      "kOneShare": 0.0062
+    },
+    {
+      "tourists": 950,
+      "venues": 30,
+      "records": 1931,
+      "recordsPerVenue": 64.4,
+      "thetaSec": 3600,
+      "loadSec": 69.6,
+      "gasMean": 221986.92,
+      "gasMax": 257217,
+      "groundTruth": 371,
+      "truePositives": 371,
+      "falsePositives": 0,
+      "falseNegatives": 0,
+      "precision": 1,
+      "recall": 1,
+      "matchMsMean": 1870.435,
+      "matchMsP95": 3147.363,
+      "scannedMean": 111.2,
+      "kMedian": 6,
+      "kOneShare": 0.0062
+    },
+    {
+      "tourists": 1900,
+      "venues": 30,
+      "records": 3864,
+      "recordsPerVenue": 128.8,
+      "thetaSec": 0,
+      "loadSec": 136.5,
+      "gasMean": 223009.8,
+      "gasMax": 257217,
+      "groundTruth": 926,
+      "truePositives": 926,
+      "falsePositives": 0,
+      "falseNegatives": 0,
+      "precision": 1,
+      "recall": 1,
+      "matchMsMean": 3967.314,
+      "matchMsP95": 6262.761,
+      "scannedMean": 268.933,
+      "kMedian": 11,
+      "kOneShare": 0
+    },
+    {
+      "tourists": 3800,
+      "venues": 30,
+      "records": 7607,
+      "recordsPerVenue": 253.6,
+      "thetaSec": 0,
+      "loadSec": 290.9,
+      "gasMean": 223012.68,
+      "gasMax": 257205,
+      "groundTruth": 1472,
+      "truePositives": 1472,
+      "falsePositives": 0,
+      "falseNegatives": 0,
+      "precision": 1,
+      "recall": 1,
+      "matchMsMean": 6021.786,
+      "matchMsP95": 10937.117,
+      "scannedMean": 410,
+      "kMedian": 20,
+      "kOneShare": 0
+    },
+    {
+      "tourists": 1900,
+      "venues": 60,
+      "records": 3864,
+      "recordsPerVenue": 64.4,
+      "thetaSec": 0,
+      "loadSec": 139.5,
+      "gasMean": 223011.96,
+      "gasMax": 257217,
+      "groundTruth": 496,
+      "truePositives": 496,
+      "falsePositives": 0,
+      "falseNegatives": 0,
+      "precision": 1,
+      "recall": 1,
+      "matchMsMean": 2067.516,
+      "matchMsP95": 3045.254,
+      "scannedMean": 136.467,
+      "kMedian": 6,
+      "kOneShare": 0.006
+    },
+    {
+      "tourists": 1900,
+      "venues": 10,
+      "records": 3864,
+      "recordsPerVenue": 386.4,
+      "thetaSec": 0,
+      "loadSec": 140.8,
+      "gasMean": 222840.6,
+      "gasMax": 257217,
+      "groundTruth": 2747,
+      "truePositives": 2747,
+      "falsePositives": 0,
+      "falseNegatives": 0,
+      "precision": 1,
+      "recall": 1,
+      "matchMsMean": 10880.383,
+      "matchMsP95": 16348.763,
+      "scannedMean": 796.733,
+      "kMedian": 31,
+      "kOneShare": 0
+    }
+  ],
+  "E17": {
+    "levels": {
+      "1": {
+        "requests": 512,
+        "granted": 512,
+        "throughputPerSec": 33.3,
+        "latencyMs": {
+          "n": 512,
+          "mean": 30.048,
+          "sd": 6.648,
+          "min": 21.36,
+          "p50": 28.699,
+          "p95": 38.594,
+          "max": 91.639
+        }
+      },
+      "4": {
+        "requests": 512,
+        "granted": 512,
+        "throughputPerSec": 47.7,
+        "latencyMs": {
+          "n": 512,
+          "mean": 83.725,
+          "sd": 15.766,
+          "min": 52.703,
+          "p50": 79.016,
+          "p95": 116.288,
+          "max": 141.12
+        }
+      },
+      "16": {
+        "requests": 512,
+        "granted": 512,
+        "throughputPerSec": 55.2,
+        "latencyMs": {
+          "n": 512,
+          "mean": 287.852,
+          "sd": 37.044,
+          "min": 150.518,
+          "p50": 283.265,
+          "p95": 354.027,
+          "max": 414.93
+        }
+      },
+      "64": {
+        "requests": 512,
+        "granted": 512,
+        "throughputPerSec": 52.9,
+        "latencyMs": {
+          "n": 512,
+          "mean": 1182.502,
+          "sd": 139.81,
+          "min": 728.588,
+          "p50": 1182.459,
+          "p95": 1389,
+          "max": 1554.723
+        }
+      },
+      "256": {
+        "requests": 512,
+        "granted": 512,
+        "throughputPerSec": 58.5,
+        "latencyMs": {
+          "n": 512,
+          "mean": 3942.968,
+          "sd": 1795.041,
+          "min": 2051.112,
+          "p50": 3183.496,
+          "p95": 8053.717,
+          "max": 8126.855
+        }
+      }
+    },
+    "replayRace": {
+      "trials": 100,
+      "copies": 32,
+      "grantsPerTrial": {
+        "n": 100,
+        "mean": 1,
+        "sd": 0,
+        "min": 1,
+        "p50": 1,
+        "p95": 1,
+        "max": 1
+      },
+      "trialsWithExactlyOneGrant": 100
+    },
+    "replayAcrossRestart": {
+      "trials": 50,
+      "deniedWithNonceLog": 50,
+      "grantedWithoutNonceLog": 50
+    },
+    "revocationRace": {
+      "requests": 200,
+      "granted": 200,
+      "deniedInactive": 0,
+      "revokeBlock": 301,
+      "decisionsConsistentWithDecisionBlock": true
+    }
+  },
+  "E18": {
+    "missingObject": {
+      "objects": 20,
+      "denied": 20,
+      "restoredFromReplica": 20
+    },
+    "corruptedObject": {
+      "objects": 20,
+      "denied": 20,
+      "corruptedReplicaAccepted": false,
+      "restoredFromReplica": 20
+    },
+    "storeLost": {
+      "objects": 120,
+      "deniedWhileLost": 20,
+      "sampled": 20,
+      "restoreAllMs": 54.9,
+      "grantedAfterRestore": 20
+    },
+    "chainUnavailable": {
+      "before": "GRANT",
+      "requests": 20,
+      "granted": 0,
+      "deniedChainUnavailable": 20,
+      "denyLatencyMs": {
+        "n": 20,
+        "mean": 2.487,
+        "sd": 0.594,
+        "min": 1.898,
+        "p50": 2.251,
+        "p95": 3.61,
+        "max": 4.025
+      },
+      "firstGrantAfterRecoveryMs": null
+    },
+    "krsRestart": {
+      "grantBefore": "GRANT",
+      "replayAfterRestart": "replayed challenge",
+      "freshGrantsAfterRestart": 20,
+      "of": 20,
+      "keysReloaded": 120,
+      "auditChain": {
+        "ok": true,
+        "entries": 213
+      }
+    },
+    "backupAfterErasure": {
+      "shredded": 3,
+      "ownRecords": 3,
+      "deniedAfterShred": 0,
+      "releasableAfterSnapshotRestore": 3
+    }
   }
 }

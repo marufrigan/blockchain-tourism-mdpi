@@ -7,5 +7,9 @@
   "L3_lookback": true,
   "L3_lookback_necessary": true,
   "L4_clip_sound": true,
-  "L5_clip_complete": true
+  "L5_clip_complete": true,
+  "L6_signed_overlap": true,
+  "L7_theta_subinterval": true,
+  "L8_empty_clip": true,
+  "L9_measure_reading_fails": true
 }
