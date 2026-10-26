@@ -5,13 +5,14 @@
   "main": "backend/src/server.js",
   "scripts": {
     "compile": "node scripts/compile.js",
-    "test": "mocha test/pctf.test.js --timeout 60000",
+    "test": "mocha test/pctf.test.js test/extensions.test.js --timeout 60000",
     "deploy": "node scripts/deploy.js",
     "backend": "node backend/src/server.js",
     "evaluate": "node scripts/experiments/run-all.js && node scripts/experiments/throughput.js 1500 30",
     "figures": "python3 scripts/figures/fig_results.py results figures && cd figures/src && pdflatex -interaction=nonstopmode -output-directory .. fig1_system_model.tex && pdflatex -interaction=nonstopmode -output-directory .. fig2_key_release_protocol.tex",
     "slither": "slither contracts/ContactRecordManager.sol && slither contracts/ParticipantRegistry.sol",
-    "verify": "node scripts/analysis/anonymity.js results && python3 scripts/analysis/validate_models.py results && python3 formal/verify_properties.py results && node formal/check_key_release.js results"
+    "verify": "node scripts/analysis/anonymity.js results && python3 scripts/analysis/validate_models.py results && python3 formal/verify_properties.py results && node formal/check_key_release.js results && node formal/check_key_release_onchain.js results",
+    "evaluate:extended": "node scripts/experiments/extended.js all"
   },
   "keywords": [
     "pctf",

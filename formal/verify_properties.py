@@ -14,6 +14,14 @@ Z3 proves it by showing that its negation is unsatisfiable.
       common instant inside the infectious window.
   L5  Clipping completeness: conversely, any common instant of the contact interval, the
       patient's visit and the window lies in Omega_i.
+  L6  Matching rule: for closed integer intervals, the signed overlap
+      ell = min(b, d) - max(a, c) is >= 0 exactly when the intervals share an instant
+      (theta = 0 means a non-empty intersection; contact at one endpoint counts).
+  L7  For theta >= 0, ell >= theta holds exactly when both intervals contain a common
+      sub-interval [s, s + theta].
+  L8  An empty clipped interval (visit outside the window) matches no stay for any theta >= 0.
+  L9  (pitfall) Reading the rule as max(0, ell) >= 0 would match disjoint intervals:
+      Z3 returns a counterexample, which is why the paper and code use the signed overlap.
 Usage: python3 formal/verify_properties.py [results_dir]
 """
 import json
@@ -108,6 +116,22 @@ common = And(a_ <= t, t <= b_, ti <= t, t <= to, td - w <= t, t <= td)
 wf = And(a_ <= b_, ti <= to, w >= 0)
 results["L4_clip_sound"] = prove("L4 clipping soundness", Implies(And(wf, meets), Exists([t], common)))
 results["L5_clip_complete"] = prove("L5 clipping completeness", ForAll([t], Implies(And(wf, common), And(lo <= t, t <= hi, a_ <= hi, lo <= b_))))
+
+# ---------------------------------------------------------------- L6-L9 matching rule
+c_, d_, th, s_ = Int("c"), Int("d"), Int("theta"), Int("s")
+ell = mini(b_, d_) - maxi(a_, c_)
+iv = And(a_ <= b_, c_ <= d_)
+results["L6_signed_overlap"] = prove("L6 ell >= 0 iff closed intervals share an instant",
+                                     Implies(iv, (ell >= 0) == Exists([t], And(a_ <= t, t <= b_, c_ <= t, t <= d_))))
+sub = And(a_ <= s_, s_ + th <= b_, c_ <= s_, s_ + th <= d_)
+results["L7_theta_subinterval"] = prove("L7 ell >= theta iff a common sub-interval of length theta exists",
+                                        Implies(And(iv, th >= 0), (ell >= th) == Exists([s_], sub)))
+results["L8_empty_clip"] = prove("L8 an empty clipped interval matches nothing",
+                                 Implies(And(a_ <= b_, wf, lo > hi, th >= 0), mini(b_, hi) - maxi(a_, lo) < th))
+s9 = Solver()
+s9.add(iv, maxi(ell, 0) >= 0, b_ < c_)
+results["L9_measure_reading_fails"] = s9.check() == sat
+print("L9 max(0, ell) >= 0 accepts disjoint intervals (counterexample exists):", results["L9_measure_reading_fails"])
 
 out = sys.argv[1] if len(sys.argv) > 1 else "results"
 json.dump(results, open(os.path.join(out, "e12_formal_lemmas.json"), "w"), indent=2)

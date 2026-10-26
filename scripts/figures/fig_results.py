@@ -84,37 +84,39 @@ for a in axs:
 fig.tight_layout(pad=0.4, w_pad=1.6)
 save(fig, "fig3_hybrid_vs_onchain")
 
-# ------------------------------------------------ Figure 4: throughput with 2 s blocks
-rr = rows("e4_throughput_2s.csv")
-lat = np.sort([float(r["latencyMs"]) / 1000 for r in rr])
+# ------------------------------------------------ Figure 4: inclusion latency (Ganache vs Besu QBFT) and revocation delay
+def cdf(ax, v, style, label):
+    v = np.sort(v)
+    ax.plot(v, np.arange(1, len(v) + 1) / len(v), style, color="black", lw=0.9, label=label)
 fig, axs = plt.subplots(1, 2, figsize=(16.0 / 2.54, 5.2 / 2.54))
 ax = axs[0]
-ax.plot(lat, np.arange(1, len(lat) + 1) / len(lat), "-", color="black", lw=0.9)
-ax.axvline(np.median(lat), color="black", lw=0.6, ls=":")
-ax.text(np.median(lat), 0.08, f"  median {np.median(lat):.1f} s", fontsize=6, ha="left")
+g = [float(r["latencyMs"]) / 1000 for r in rows("e4_throughput_2s.csv")]
+b_ = [float(r["latencyMs"]) / 1000 for r in rows("e15_throughput.csv")]
+cdf(ax, g, "--", f"Ganache, 1 node (median {np.median(g):.1f} s)")
+cdf(ax, b_, "-", f"Besu QBFT, 4 validators (median {np.median(b_):.1f} s)")
 ax.set_xlabel("Submission-to-inclusion latency (s)")
 ax.set_ylabel("Cumulative fraction of records")
 ax.set_ylim(0, 1.02)
-ax.set_title("(a) Inclusion latency, 1500 records", fontsize=7)
+ax.set_xlim(left=0)
+ax.legend(loc="lower right", fontsize=5.8)
+ax.set_title("(a) Inclusion latency, 1,500 records, 2 s block period", fontsize=7)
 ax = axs[1]
-blocks = {}
-for r in rr:
-    blocks[int(r["block"])] = blocks.get(int(r["block"]), 0) + 1
-ks = sorted(blocks)
-cum = np.cumsum([blocks[k] for k in ks])
-idx = np.arange(1, len(ks) + 1)
-ax.step(idx, cum, where="post", color="black", lw=0.9, label="measured (≤100 in flight)")
-cap = int(30e6 // np.mean([float(r["gasUsed"]) for r in rr]))
-ax.plot(idx, cap * idx, "--", color="black", lw=0.7, label=f"gas-limit bound ({cap}/block)")
-ax.set_xlabel("Blocks since first submission")
-ax.set_ylabel("Records confirmed (cumulative)")
-ax.legend(loc="upper left", fontsize=6)
-ax.set_title("(b) Confirmed records per block", fontsize=7)
+rv = rows("e19_revocation_delay.csv")
+for kind, style in [("role revocation", "-"), ("consent withdrawal", "--"), ("policy change", ":")]:
+    v = [float(r["enforcementMs"]) / 1000 for r in rv if r["kind"] == kind and r["enforcementMs"]]
+    if v:
+        cdf(ax, v, style, f"{kind} (n={len(v)}, median {np.median(v):.2f} s)")
+ax.set_xlabel("Change submitted to first denied release (s)")
+ax.set_ylabel("Cumulative fraction of trials")
+ax.set_ylim(0, 1.02)
+ax.set_xlim(left=0)
+ax.legend(loc="lower right", fontsize=5.8)
+ax.set_title("(b) Revocation-to-enforcement delay, Besu QBFT", fontsize=7)
 for a_ in axs:
     a_.spines["top"].set_visible(False)
     a_.spines["right"].set_visible(False)
 fig.tight_layout(pad=0.4, w_pad=1.6)
-save(fig, "fig4_throughput")
+save(fig, "fig4_latency_revocation")
 
 # ------------------------------------------------ Figure 5: gas per operation
 ops = [

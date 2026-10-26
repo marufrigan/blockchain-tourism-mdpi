@@ -1,4 +1,591 @@
 {
+ "AclRecordManager": {
+  "abi": [
+   {
+    "inputs": [],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+   },
+   {
+    "anonymous": false,
+    "inputs": [
+     {
+      "indexed": true,
+      "internalType": "uint256",
+      "name": "recordId",
+      "type": "uint256"
+     },
+     {
+      "indexed": true,
+      "internalType": "address",
+      "name": "reader",
+      "type": "address"
+     },
+     {
+      "indexed": false,
+      "internalType": "bool",
+      "name": "allowed",
+      "type": "bool"
+     }
+    ],
+    "name": "ReaderChanged",
+    "type": "event"
+   },
+   {
+    "anonymous": false,
+    "inputs": [
+     {
+      "indexed": true,
+      "internalType": "uint256",
+      "name": "recordId",
+      "type": "uint256"
+     },
+     {
+      "indexed": true,
+      "internalType": "bytes32",
+      "name": "venueHash",
+      "type": "bytes32"
+     },
+     {
+      "indexed": true,
+      "internalType": "address",
+      "name": "writer",
+      "type": "address"
+     }
+    ],
+    "name": "RecordCreated",
+    "type": "event"
+   },
+   {
+    "anonymous": false,
+    "inputs": [
+     {
+      "indexed": true,
+      "internalType": "address",
+      "name": "writer",
+      "type": "address"
+     },
+     {
+      "indexed": false,
+      "internalType": "bool",
+      "name": "allowed",
+      "type": "bool"
+     }
+    ],
+    "name": "WriterChanged",
+    "type": "event"
+   },
+   {
+    "inputs": [
+     {
+      "internalType": "uint256",
+      "name": "id",
+      "type": "uint256"
+     },
+     {
+      "internalType": "address",
+      "name": "who",
+      "type": "address"
+     }
+    ],
+    "name": "canRead",
+    "outputs": [
+     {
+      "internalType": "bool",
+      "name": "",
+      "type": "bool"
+     }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+   },
+   {
+    "inputs": [
+     {
+      "internalType": "bytes32",
+      "name": "subjectHash",
+      "type": "bytes32"
+     },
+     {
+      "internalType": "bytes32",
+      "name": "venueHash",
+      "type": "bytes32"
+     },
+     {
+      "internalType": "bytes32",
+      "name": "contentDigest",
+      "type": "bytes32"
+     },
+     {
+      "internalType": "uint64",
+      "name": "tStart",
+      "type": "uint64"
+     },
+     {
+      "internalType": "uint64",
+      "name": "tEnd",
+      "type": "uint64"
+     }
+    ],
+    "name": "createRecord",
+    "outputs": [
+     {
+      "internalType": "uint256",
+      "name": "id",
+      "type": "uint256"
+     }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+   },
+   {
+    "inputs": [
+     {
+      "internalType": "uint256",
+      "name": "id",
+      "type": "uint256"
+     }
+    ],
+    "name": "getRecord",
+    "outputs": [
+     {
+      "components": [
+       {
+        "internalType": "bytes32",
+        "name": "subjectHash",
+        "type": "bytes32"
+       },
+       {
+        "internalType": "bytes32",
+        "name": "venueHash",
+        "type": "bytes32"
+       },
+       {
+        "internalType": "bytes32",
+        "name": "contentDigest",
+        "type": "bytes32"
+       },
+       {
+        "internalType": "address",
+        "name": "createdBy",
+        "type": "address"
+       },
+       {
+        "internalType": "uint64",
+        "name": "tStart",
+        "type": "uint64"
+       },
+       {
+        "internalType": "uint64",
+        "name": "tEnd",
+        "type": "uint64"
+       }
+      ],
+      "internalType": "struct AclRecordManager.Record",
+      "name": "r",
+      "type": "tuple"
+     }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+   },
+   {
+    "inputs": [
+     {
+      "internalType": "address",
+      "name": "",
+      "type": "address"
+     }
+    ],
+    "name": "isWriter",
+    "outputs": [
+     {
+      "internalType": "bool",
+      "name": "",
+      "type": "bool"
+     }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+   },
+   {
+    "inputs": [],
+    "name": "operator",
+    "outputs": [
+     {
+      "internalType": "address",
+      "name": "",
+      "type": "address"
+     }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+   },
+   {
+    "inputs": [],
+    "name": "recordCount",
+    "outputs": [
+     {
+      "internalType": "uint256",
+      "name": "",
+      "type": "uint256"
+     }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+   },
+   {
+    "inputs": [
+     {
+      "internalType": "uint256[]",
+      "name": "ids",
+      "type": "uint256[]"
+     },
+     {
+      "internalType": "address",
+      "name": "reader",
+      "type": "address"
+     },
+     {
+      "internalType": "bool",
+      "name": "allowed",
+      "type": "bool"
+     }
+    ],
+    "name": "setReader",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+   },
+   {
+    "inputs": [
+     {
+      "internalType": "address",
+      "name": "w",
+      "type": "address"
+     },
+     {
+      "internalType": "bool",
+      "name": "allowed",
+      "type": "bool"
+     }
+    ],
+    "name": "setWriter",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+   }
+  ],
+  "bytecode": "0x608060405234801561001057600080fd5b50600080546001600160a01b0319163317905561090d806100326000396000f3fe608060405234801561001057600080fd5b50600436106100885760003560e01c8063570ca7351161005b578063570ca7351461018a57806387217aa3146101b5578063900407bc146101d6578063d6728dd1146101df57600080fd5b806303e9e6091461008d5780631f91b39f146101095780632b29ba231461011e5780633cd1f0f714610151575b600080fd5b6100a061009b3660046106e0565b6101f2565b60405161010091908151815260208083015190820152604080830151908201526060808301516001600160a01b03169082015260808083015167ffffffffffffffff9081169183019190915260a092830151169181019190915260c00190565b60405180910390f35b61011c610117366004610725565b6102f0565b005b61014161012c366004610758565b60026020526000908152604090205460ff1681565b6040519015158152602001610100565b61014161015f36600461077a565b60009182526004602090815260408084206001600160a01b0393909316845291905290205460ff1690565b60005461019d906001600160a01b031681565b6040516001600160a01b039091168152602001610100565b6101c86101c33660046107b5565b61039e565b604051908152602001610100565b6101c860015481565b61011c6101ed366004610805565b610598565b6040805160c08101825260008082526020808301829052828401829052606083018290526080830182905260a08301829052848252600481528382203383529052919091205460ff1661027d5760405162461bcd60e51b815260206004820152600e60248201526d41434c3a206e6f2061636365737360901b60448201526064015b60405180910390fd5b50600090815260036020818152604092839020835160c08101855281548152600182015492810192909252600281015493820193909352908201546001600160a01b038116606083015267ffffffffffffffff600160a01b9091048116608083015260049092015490911660a082015290565b6000546001600160a01b0316331461033f5760405162461bcd60e51b815260206004820152601260248201527141434c3a206f70657261746f72206f6e6c7960701b6044820152606401610274565b6001600160a01b038216600081815260026020908152604091829020805460ff191685151590811790915591519182527f4759a00269085626e6e1450d837be4ca396feb3a3bd6ecdd95089b76c2acddc1910160405180910390a25050565b3360009081526002602052604081205460ff166103f15760405162461bcd60e51b815260206004820152601160248201527020a1a61d103737ba1030903bb934ba32b960791b6044820152606401610274565b8267ffffffffffffffff168267ffffffffffffffff1610156104495760405162461bcd60e51b81526020600482015260116024820152701050d30e88189859081a5b9d195c9d985b607a1b6044820152606401610274565b6001600081546104589061089a565b91829055506040805160c0810182528881526020808201898152828401898152336060850181815267ffffffffffffffff808c16608088019081528b821660a0890190815260008b81526003808a528b82209a518b5597516001808c0191909155965160028b01559351968901805492518416600160a01b026001600160e01b03199093166001600160a01b039890981697909717919091179095559351600496870180549190951667ffffffffffffffff19909116179093559383528482208483528352848220805460ff1916821790558a82526005835284822080548083018255908352838320018690558b825260068352848220805491820181558252918120909101849055915192935091879184917fc5f362eb8a4eaf661c3b2e0c974fd469b4b7d95f27bcd3ff25cd7338008b99509190a495945050505050565b60005b838110156106d95733600360008787858181106105ba576105ba6108c1565b60209081029290920135835250810191909152604001600020600301546001600160a01b03161461061e5760405162461bcd60e51b815260206004820152600e60248201526d20a1a61d103737ba1037bbb732b960911b6044820152606401610274565b8160046000878785818110610635576106356108c1565b6020908102929092013583525081810192909252604090810160009081206001600160a01b038816808352935220805460ff191692151592909217909155858583818110610685576106856108c1565b905060200201357fba556846a545af3e16dd52c44b6e836cf3d2ad962775eaeee0112467da3b40c2846040516106bf911515815260200190565b60405180910390a3806106d18161089a565b91505061059b565b5050505050565b6000602082840312156106f257600080fd5b5035919050565b80356001600160a01b038116811461071057600080fd5b919050565b8035801515811461071057600080fd5b6000806040838503121561073857600080fd5b610741836106f9565b915061074f60208401610715565b90509250929050565b60006020828403121561076a57600080fd5b610773826106f9565b9392505050565b6000806040838503121561078d57600080fd5b8235915061074f602084016106f9565b803567ffffffffffffffff8116811461071057600080fd5b600080600080600060a086880312156107cd57600080fd5b8535945060208601359350604086013592506107eb6060870161079d565b91506107f96080870161079d565b90509295509295909350565b6000806000806060858703121561081b57600080fd5b843567ffffffffffffffff8082111561083357600080fd5b818701915087601f83011261084757600080fd5b81358181111561085657600080fd5b8860208260051b850101111561086b57600080fd5b60209283019650945061088191870190506106f9565b915061088f60408601610715565b905092959194509250565b6000600182016108ba57634e487b7160e01b600052601160045260246000fd5b5060010190565b634e487b7160e01b600052603260045260246000fdfea2646970667358221220c9023a0f65bada1b0b1f5964260d0a9782be5bfcde0928eefe9b4a5de4486cb264736f6c63430008130033",
+  "storageLayout": {
+   "storage": [
+    {
+     "astId": 17,
+     "contract": "AclRecordManager.sol:AclRecordManager",
+     "label": "operator",
+     "offset": 0,
+     "slot": "0",
+     "type": "t_address"
+    },
+    {
+     "astId": 19,
+     "contract": "AclRecordManager.sol:AclRecordManager",
+     "label": "recordCount",
+     "offset": 0,
+     "slot": "1",
+     "type": "t_uint256"
+    },
+    {
+     "astId": 23,
+     "contract": "AclRecordManager.sol:AclRecordManager",
+     "label": "isWriter",
+     "offset": 0,
+     "slot": "2",
+     "type": "t_mapping(t_address,t_bool)"
+    },
+    {
+     "astId": 28,
+     "contract": "AclRecordManager.sol:AclRecordManager",
+     "label": "records",
+     "offset": 0,
+     "slot": "3",
+     "type": "t_mapping(t_uint256,t_struct(Record)15_storage)"
+    },
+    {
+     "astId": 34,
+     "contract": "AclRecordManager.sol:AclRecordManager",
+     "label": "readers",
+     "offset": 0,
+     "slot": "4",
+     "type": "t_mapping(t_uint256,t_mapping(t_address,t_bool))"
+    },
+    {
+     "astId": 39,
+     "contract": "AclRecordManager.sol:AclRecordManager",
+     "label": "venueIndex",
+     "offset": 0,
+     "slot": "5",
+     "type": "t_mapping(t_bytes32,t_array(t_uint256)dyn_storage)"
+    },
+    {
+     "astId": 44,
+     "contract": "AclRecordManager.sol:AclRecordManager",
+     "label": "subjectIndex",
+     "offset": 0,
+     "slot": "6",
+     "type": "t_mapping(t_bytes32,t_array(t_uint256)dyn_storage)"
+    }
+   ],
+   "types": {
+    "t_address": {
+     "encoding": "inplace",
+     "label": "address",
+     "numberOfBytes": "20"
+    },
+    "t_array(t_uint256)dyn_storage": {
+     "base": "t_uint256",
+     "encoding": "dynamic_array",
+     "label": "uint256[]",
+     "numberOfBytes": "32"
+    },
+    "t_bool": {
+     "encoding": "inplace",
+     "label": "bool",
+     "numberOfBytes": "1"
+    },
+    "t_bytes32": {
+     "encoding": "inplace",
+     "label": "bytes32",
+     "numberOfBytes": "32"
+    },
+    "t_mapping(t_address,t_bool)": {
+     "encoding": "mapping",
+     "key": "t_address",
+     "label": "mapping(address => bool)",
+     "numberOfBytes": "32",
+     "value": "t_bool"
+    },
+    "t_mapping(t_bytes32,t_array(t_uint256)dyn_storage)": {
+     "encoding": "mapping",
+     "key": "t_bytes32",
+     "label": "mapping(bytes32 => uint256[])",
+     "numberOfBytes": "32",
+     "value": "t_array(t_uint256)dyn_storage"
+    },
+    "t_mapping(t_uint256,t_mapping(t_address,t_bool))": {
+     "encoding": "mapping",
+     "key": "t_uint256",
+     "label": "mapping(uint256 => mapping(address => bool))",
+     "numberOfBytes": "32",
+     "value": "t_mapping(t_address,t_bool)"
+    },
+    "t_mapping(t_uint256,t_struct(Record)15_storage)": {
+     "encoding": "mapping",
+     "key": "t_uint256",
+     "label": "mapping(uint256 => struct AclRecordManager.Record)",
+     "numberOfBytes": "32",
+     "value": "t_struct(Record)15_storage"
+    },
+    "t_struct(Record)15_storage": {
+     "encoding": "inplace",
+     "label": "struct AclRecordManager.Record",
+     "members": [
+      {
+       "astId": 4,
+       "contract": "AclRecordManager.sol:AclRecordManager",
+       "label": "subjectHash",
+       "offset": 0,
+       "slot": "0",
+       "type": "t_bytes32"
+      },
+      {
+       "astId": 6,
+       "contract": "AclRecordManager.sol:AclRecordManager",
+       "label": "venueHash",
+       "offset": 0,
+       "slot": "1",
+       "type": "t_bytes32"
+      },
+      {
+       "astId": 8,
+       "contract": "AclRecordManager.sol:AclRecordManager",
+       "label": "contentDigest",
+       "offset": 0,
+       "slot": "2",
+       "type": "t_bytes32"
+      },
+      {
+       "astId": 10,
+       "contract": "AclRecordManager.sol:AclRecordManager",
+       "label": "createdBy",
+       "offset": 0,
+       "slot": "3",
+       "type": "t_address"
+      },
+      {
+       "astId": 12,
+       "contract": "AclRecordManager.sol:AclRecordManager",
+       "label": "tStart",
+       "offset": 20,
+       "slot": "3",
+       "type": "t_uint64"
+      },
+      {
+       "astId": 14,
+       "contract": "AclRecordManager.sol:AclRecordManager",
+       "label": "tEnd",
+       "offset": 0,
+       "slot": "4",
+       "type": "t_uint64"
+      }
+     ],
+     "numberOfBytes": "160"
+    },
+    "t_uint256": {
+     "encoding": "inplace",
+     "label": "uint256",
+     "numberOfBytes": "32"
+    },
+    "t_uint64": {
+     "encoding": "inplace",
+     "label": "uint64",
+     "numberOfBytes": "8"
+    }
+   }
+  },
+  "source": "AclRecordManager.sol"
+ },
+ "AuditAnchor": {
+  "abi": [
+   {
+    "inputs": [
+     {
+      "internalType": "address",
+      "name": "keyService",
+      "type": "address"
+     }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+   },
+   {
+    "anonymous": false,
+    "inputs": [
+     {
+      "indexed": true,
+      "internalType": "bytes32",
+      "name": "head",
+      "type": "bytes32"
+     },
+     {
+      "indexed": false,
+      "internalType": "uint64",
+      "name": "entries",
+      "type": "uint64"
+     },
+     {
+      "indexed": false,
+      "internalType": "uint64",
+      "name": "at",
+      "type": "uint64"
+     }
+    ],
+    "name": "Anchored",
+    "type": "event"
+   },
+   {
+    "inputs": [
+     {
+      "internalType": "bytes32",
+      "name": "newHead",
+      "type": "bytes32"
+     },
+     {
+      "internalType": "uint64",
+      "name": "count",
+      "type": "uint64"
+     }
+    ],
+    "name": "anchor",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+   },
+   {
+    "inputs": [],
+    "name": "entries",
+    "outputs": [
+     {
+      "internalType": "uint64",
+      "name": "",
+      "type": "uint64"
+     }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+   },
+   {
+    "inputs": [],
+    "name": "head",
+    "outputs": [
+     {
+      "internalType": "bytes32",
+      "name": "",
+      "type": "bytes32"
+     }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+   },
+   {
+    "inputs": [],
+    "name": "service",
+    "outputs": [
+     {
+      "internalType": "address",
+      "name": "",
+      "type": "address"
+     }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+   }
+  ],
+  "bytecode": "0x60a060405234801561001057600080fd5b5060405161032c38038061032c83398101604081905261002f91610040565b6001600160a01b0316608052610070565b60006020828403121561005257600080fd5b81516001600160a01b038116811461006957600080fd5b9392505050565b60805161029c61009060003960008181609f015260f9015261029c6000f3fe608060405234801561001057600080fd5b506004361061004c5760003560e01c80630fc99376146100515780638f7dcfa314610083578063d598d4c91461009a578063db2c4aca146100d9575b600080fd5b6001546100659067ffffffffffffffff1681565b60405167ffffffffffffffff90911681526020015b60405180910390f35b61008c60005481565b60405190815260200161007a565b6100c17f000000000000000000000000000000000000000000000000000000000000000081565b6040516001600160a01b03909116815260200161007a565b6100ec6100e7366004610229565b6100ee565b005b336001600160a01b037f000000000000000000000000000000000000000000000000000000000000000016146101625760405162461bcd60e51b8152602060048201526014602482015273416e63686f723a2073657276696365206f6e6c7960601b60448201526064015b60405180910390fd5b60015467ffffffffffffffff90811690821610156101c25760405162461bcd60e51b815260206004820152601960248201527f416e63686f723a206c6f672063616e6e6f7420736872696e6b000000000000006044820152606401610159565b60008290556001805467ffffffffffffffff191667ffffffffffffffff8381169182179092556040805191825242909216602082015283917f665a214d59c3b0d9e6c4975fba280be5e19b9b0862cff85b71d42433191945cf910160405180910390a25050565b6000806040838503121561023c57600080fd5b82359150602083013567ffffffffffffffff8116811461025b57600080fd5b80915050925092905056fea26469706673582212207fe0edc228e86c048afc908a224e4af5c5f94ba2e2373a40f2a9d5547959258c64736f6c63430008130033",
+  "storageLayout": {
+   "storage": [
+    {
+     "astId": 285,
+     "contract": "AuditAnchor.sol:AuditAnchor",
+     "label": "head",
+     "offset": 0,
+     "slot": "0",
+     "type": "t_bytes32"
+    },
+    {
+     "astId": 287,
+     "contract": "AuditAnchor.sol:AuditAnchor",
+     "label": "entries",
+     "offset": 0,
+     "slot": "1",
+     "type": "t_uint64"
+    }
+   ],
+   "types": {
+    "t_bytes32": {
+     "encoding": "inplace",
+     "label": "bytes32",
+     "numberOfBytes": "32"
+    },
+    "t_uint64": {
+     "encoding": "inplace",
+     "label": "uint64",
+     "numberOfBytes": "8"
+    }
+   }
+  },
+  "source": "AuditAnchor.sol"
+ },
  "ContactRecordManager": {
   "abi": [
    {
@@ -850,7 +1437,7 @@
   "storageLayout": {
    "storage": [
     {
-     "astId": 1394,
+     "astId": 1742,
      "contract": "ContactRecordManager.sol:ContactRecordManager",
      "label": "policyBits",
      "offset": 0,
@@ -858,7 +1445,7 @@
      "type": "t_uint64"
     },
     {
-     "astId": 52,
+     "astId": 400,
      "contract": "ContactRecordManager.sol:ContactRecordManager",
      "label": "recordCount",
      "offset": 0,
@@ -866,15 +1453,15 @@
      "type": "t_uint256"
     },
     {
-     "astId": 57,
+     "astId": 405,
      "contract": "ContactRecordManager.sol:ContactRecordManager",
      "label": "records",
      "offset": 0,
      "slot": "2",
-     "type": "t_mapping(t_uint256,t_struct(Record)43_storage)"
+     "type": "t_mapping(t_uint256,t_struct(Record)391_storage)"
     },
     {
-     "astId": 62,
+     "astId": 410,
      "contract": "ContactRecordManager.sol:ContactRecordManager",
      "label": "venueIndex",
      "offset": 0,
@@ -882,7 +1469,7 @@
      "type": "t_mapping(t_bytes32,t_array(t_uint256)dyn_storage)"
     },
     {
-     "astId": 67,
+     "astId": 415,
      "contract": "ContactRecordManager.sol:ContactRecordManager",
      "label": "subjectIndex",
      "offset": 0,
@@ -890,7 +1477,7 @@
      "type": "t_mapping(t_bytes32,t_array(t_uint256)dyn_storage)"
     },
     {
-     "astId": 71,
+     "astId": 419,
      "contract": "ContactRecordManager.sol:ContactRecordManager",
      "label": "exposureOf",
      "offset": 0,
@@ -898,15 +1485,15 @@
      "type": "t_mapping(t_bytes32,t_uint256)"
     },
     {
-     "astId": 76,
+     "astId": 424,
      "contract": "ContactRecordManager.sol:ContactRecordManager",
      "label": "aggregates",
      "offset": 0,
      "slot": "6",
-     "type": "t_mapping(t_bytes32,t_struct(Aggregate)50_storage)"
+     "type": "t_mapping(t_bytes32,t_struct(Aggregate)398_storage)"
     },
     {
-     "astId": 80,
+     "astId": 428,
      "contract": "ContactRecordManager.sol:ContactRecordManager",
      "label": "consentGiven",
      "offset": 0,
@@ -950,12 +1537,12 @@
      "numberOfBytes": "32",
      "value": "t_array(t_uint256)dyn_storage"
     },
-    "t_mapping(t_bytes32,t_struct(Aggregate)50_storage)": {
+    "t_mapping(t_bytes32,t_struct(Aggregate)398_storage)": {
      "encoding": "mapping",
      "key": "t_bytes32",
      "label": "mapping(bytes32 => struct ContactRecordManager.Aggregate)",
      "numberOfBytes": "32",
-     "value": "t_struct(Aggregate)50_storage"
+     "value": "t_struct(Aggregate)398_storage"
     },
     "t_mapping(t_bytes32,t_uint256)": {
      "encoding": "mapping",
@@ -964,19 +1551,19 @@
      "numberOfBytes": "32",
      "value": "t_uint256"
     },
-    "t_mapping(t_uint256,t_struct(Record)43_storage)": {
+    "t_mapping(t_uint256,t_struct(Record)391_storage)": {
      "encoding": "mapping",
      "key": "t_uint256",
      "label": "mapping(uint256 => struct ContactRecordManager.Record)",
      "numberOfBytes": "32",
-     "value": "t_struct(Record)43_storage"
+     "value": "t_struct(Record)391_storage"
     },
-    "t_struct(Aggregate)50_storage": {
+    "t_struct(Aggregate)398_storage": {
      "encoding": "inplace",
      "label": "struct ContactRecordManager.Aggregate",
      "members": [
       {
-       "astId": 45,
+       "astId": 393,
        "contract": "ContactRecordManager.sol:ContactRecordManager",
        "label": "cases",
        "offset": 0,
@@ -984,7 +1571,7 @@
        "type": "t_uint32"
       },
       {
-       "astId": 47,
+       "astId": 395,
        "contract": "ContactRecordManager.sol:ContactRecordManager",
        "label": "exposures",
        "offset": 4,
@@ -992,7 +1579,7 @@
        "type": "t_uint32"
       },
       {
-       "astId": 49,
+       "astId": 397,
        "contract": "ContactRecordManager.sol:ContactRecordManager",
        "label": "publishedAt",
        "offset": 8,
@@ -1002,12 +1589,12 @@
      ],
      "numberOfBytes": "32"
     },
-    "t_struct(Record)43_storage": {
+    "t_struct(Record)391_storage": {
      "encoding": "inplace",
      "label": "struct ContactRecordManager.Record",
      "members": [
       {
-       "astId": 22,
+       "astId": 370,
        "contract": "ContactRecordManager.sol:ContactRecordManager",
        "label": "subjectHash",
        "offset": 0,
@@ -1015,7 +1602,7 @@
        "type": "t_bytes32"
       },
       {
-       "astId": 24,
+       "astId": 372,
        "contract": "ContactRecordManager.sol:ContactRecordManager",
        "label": "venueHash",
        "offset": 0,
@@ -1023,7 +1610,7 @@
        "type": "t_bytes32"
       },
       {
-       "astId": 26,
+       "astId": 374,
        "contract": "ContactRecordManager.sol:ContactRecordManager",
        "label": "contentDigest",
        "offset": 0,
@@ -1031,7 +1618,7 @@
        "type": "t_bytes32"
       },
       {
-       "astId": 28,
+       "astId": 376,
        "contract": "ContactRecordManager.sol:ContactRecordManager",
        "label": "createdBy",
        "offset": 0,
@@ -1039,7 +1626,7 @@
        "type": "t_address"
       },
       {
-       "astId": 30,
+       "astId": 378,
        "contract": "ContactRecordManager.sol:ContactRecordManager",
        "label": "dataType",
        "offset": 20,
@@ -1047,7 +1634,7 @@
        "type": "t_uint8"
       },
       {
-       "astId": 32,
+       "astId": 380,
        "contract": "ContactRecordManager.sol:ContactRecordManager",
        "label": "status",
        "offset": 21,
@@ -1055,7 +1642,7 @@
        "type": "t_uint8"
       },
       {
-       "astId": 34,
+       "astId": 382,
        "contract": "ContactRecordManager.sol:ContactRecordManager",
        "label": "storageScheme",
        "offset": 22,
@@ -1063,7 +1650,7 @@
        "type": "t_uint8"
       },
       {
-       "astId": 36,
+       "astId": 384,
        "contract": "ContactRecordManager.sol:ContactRecordManager",
        "label": "tStart",
        "offset": 23,
@@ -1071,7 +1658,7 @@
        "type": "t_uint64"
       },
       {
-       "astId": 38,
+       "astId": 386,
        "contract": "ContactRecordManager.sol:ContactRecordManager",
        "label": "tEnd",
        "offset": 0,
@@ -1079,7 +1666,7 @@
        "type": "t_uint64"
       },
       {
-       "astId": 40,
+       "astId": 388,
        "contract": "ContactRecordManager.sol:ContactRecordManager",
        "label": "createdAt",
        "offset": 8,
@@ -1087,7 +1674,7 @@
        "type": "t_uint64"
       },
       {
-       "astId": 42,
+       "astId": 390,
        "contract": "ContactRecordManager.sol:ContactRecordManager",
        "label": "expiresAt",
        "offset": 16,
@@ -1427,7 +2014,7 @@
   "storageLayout": {
    "storage": [
     {
-     "astId": 1394,
+     "astId": 1742,
      "contract": "FullOnChainRecordManager.sol:FullOnChainRecordManager",
      "label": "policyBits",
      "offset": 0,
@@ -1435,7 +2022,7 @@
      "type": "t_uint64"
     },
     {
-     "astId": 884,
+     "astId": 1232,
      "contract": "FullOnChainRecordManager.sol:FullOnChainRecordManager",
      "label": "recordCount",
      "offset": 0,
@@ -1443,15 +2030,15 @@
      "type": "t_uint256"
     },
     {
-     "astId": 889,
+     "astId": 1237,
      "contract": "FullOnChainRecordManager.sol:FullOnChainRecordManager",
      "label": "records",
      "offset": 0,
      "slot": "2",
-     "type": "t_mapping(t_uint256,t_struct(FullRecord)882_storage)"
+     "type": "t_mapping(t_uint256,t_struct(FullRecord)1230_storage)"
     },
     {
-     "astId": 894,
+     "astId": 1242,
      "contract": "FullOnChainRecordManager.sol:FullOnChainRecordManager",
      "label": "venueIndex",
      "offset": 0,
@@ -1459,7 +2046,7 @@
      "type": "t_mapping(t_bytes32,t_array(t_uint256)dyn_storage)"
     },
     {
-     "astId": 899,
+     "astId": 1247,
      "contract": "FullOnChainRecordManager.sol:FullOnChainRecordManager",
      "label": "subjectIndex",
      "offset": 0,
@@ -1496,19 +2083,19 @@
      "numberOfBytes": "32",
      "value": "t_array(t_uint256)dyn_storage"
     },
-    "t_mapping(t_uint256,t_struct(FullRecord)882_storage)": {
+    "t_mapping(t_uint256,t_struct(FullRecord)1230_storage)": {
      "encoding": "mapping",
      "key": "t_uint256",
      "label": "mapping(uint256 => struct FullOnChainRecordManager.FullRecord)",
      "numberOfBytes": "32",
-     "value": "t_struct(FullRecord)882_storage"
+     "value": "t_struct(FullRecord)1230_storage"
     },
-    "t_struct(FullRecord)882_storage": {
+    "t_struct(FullRecord)1230_storage": {
      "encoding": "inplace",
      "label": "struct FullOnChainRecordManager.FullRecord",
      "members": [
       {
-       "astId": 871,
+       "astId": 1219,
        "contract": "FullOnChainRecordManager.sol:FullOnChainRecordManager",
        "label": "subjectHash",
        "offset": 0,
@@ -1516,7 +2103,7 @@
        "type": "t_bytes32"
       },
       {
-       "astId": 873,
+       "astId": 1221,
        "contract": "FullOnChainRecordManager.sol:FullOnChainRecordManager",
        "label": "venueHash",
        "offset": 0,
@@ -1524,7 +2111,7 @@
        "type": "t_bytes32"
       },
       {
-       "astId": 875,
+       "astId": 1223,
        "contract": "FullOnChainRecordManager.sol:FullOnChainRecordManager",
        "label": "createdBy",
        "offset": 0,
@@ -1532,7 +2119,7 @@
        "type": "t_address"
       },
       {
-       "astId": 877,
+       "astId": 1225,
        "contract": "FullOnChainRecordManager.sol:FullOnChainRecordManager",
        "label": "tStart",
        "offset": 20,
@@ -1540,7 +2127,7 @@
        "type": "t_uint64"
       },
       {
-       "astId": 879,
+       "astId": 1227,
        "contract": "FullOnChainRecordManager.sol:FullOnChainRecordManager",
        "label": "tEnd",
        "offset": 0,
@@ -1548,7 +2135,7 @@
        "type": "t_uint64"
       },
       {
-       "astId": 881,
+       "astId": 1229,
        "contract": "FullOnChainRecordManager.sol:FullOnChainRecordManager",
        "label": "payload",
        "offset": 0,
@@ -1875,15 +2462,15 @@
   "storageLayout": {
    "storage": [
     {
-     "astId": 1013,
+     "astId": 1361,
      "contract": "ParticipantRegistry.sol:ParticipantRegistry",
      "label": "participants",
      "offset": 0,
      "slot": "0",
-     "type": "t_mapping(t_address,t_struct(Participant)1008_storage)"
+     "type": "t_mapping(t_address,t_struct(Participant)1356_storage)"
     },
     {
-     "astId": 1015,
+     "astId": 1363,
      "contract": "ParticipantRegistry.sol:ParticipantRegistry",
      "label": "activeAdmins",
      "offset": 0,
@@ -1902,24 +2489,24 @@
      "label": "bool",
      "numberOfBytes": "1"
     },
-    "t_mapping(t_address,t_struct(Participant)1008_storage)": {
+    "t_mapping(t_address,t_struct(Participant)1356_storage)": {
      "encoding": "mapping",
      "key": "t_address",
      "label": "mapping(address => struct ParticipantRegistry.Participant)",
      "numberOfBytes": "32",
-     "value": "t_struct(Participant)1008_storage"
+     "value": "t_struct(Participant)1356_storage"
     },
     "t_string_storage": {
      "encoding": "bytes",
      "label": "string",
      "numberOfBytes": "32"
     },
-    "t_struct(Participant)1008_storage": {
+    "t_struct(Participant)1356_storage": {
      "encoding": "inplace",
      "label": "struct ParticipantRegistry.Participant",
      "members": [
       {
-       "astId": 1001,
+       "astId": 1349,
        "contract": "ParticipantRegistry.sol:ParticipantRegistry",
        "label": "registered",
        "offset": 0,
@@ -1927,7 +2514,7 @@
        "type": "t_bool"
       },
       {
-       "astId": 1003,
+       "astId": 1351,
        "contract": "ParticipantRegistry.sol:ParticipantRegistry",
        "label": "active",
        "offset": 1,
@@ -1935,7 +2522,7 @@
        "type": "t_bool"
       },
       {
-       "astId": 1005,
+       "astId": 1353,
        "contract": "ParticipantRegistry.sol:ParticipantRegistry",
        "label": "role",
        "offset": 2,
@@ -1943,7 +2530,7 @@
        "type": "t_uint8"
       },
       {
-       "astId": 1007,
+       "astId": 1355,
        "contract": "ParticipantRegistry.sol:ParticipantRegistry",
        "label": "label",
        "offset": 0,
